@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class TargetSwitcher : MonoBehaviour
 {
-    public bool IsEnabled { get; private set; } = true;
+    public bool IsEnabled = true; //{ get; private set; }
 
     [Header("Cameras")]
     public Camera NormalCamera;
@@ -36,6 +36,8 @@ public class TargetSwitcher : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        SetTargetObject(NPCObject, null);
     }
 
     private void LateUpdate()

@@ -13,7 +13,7 @@ public class NonPlayableCharacter : MonoBehaviour
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -46,6 +46,8 @@ public class NonPlayableCharacter : MonoBehaviour
     {
         this.targetPosition = targetPosition;
         startPosition = transform.position;
+
+        transform.LookAt(targetPosition, Vector3.up);
 
         ContinueMove();
     }
