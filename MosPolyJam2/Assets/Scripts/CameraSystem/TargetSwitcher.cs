@@ -3,27 +3,32 @@ using UnityEngine;
 
 public class TargetSwitcher : MonoBehaviour
 {
-    public bool isEnabled { get; private set; } = true;
+    public bool IsEnabled { get; private set; } = true;
+
+    [Header("Cameras")]
+    public Camera NormalCamera;
+    public CinemachineVirtualCamera VirtualCamera;
+    private Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
 
     [Header("Refs")]
-    public Camera normalCamera;
-    public CinemachineVirtualCamera virtualCamera;
-    [Space(5)]
-    public Transform playerObject;
+    public Transform NPCObject;
 
     [Header("Interaction settings")]
-    [SerializeField] private float interactionMaxDistance;
-    [SerializeField] private KeyCode interactionKey;
-    [SerializeField] private KeyCode backKey;
+    [SerializeField] private float interactionMaxDistance = 50f;
+    [Space(5)]
+    [SerializeField] private KeyCode interactionKey = KeyCode.E;
+    [SerializeField] private float interactionTimer = 1.5f;
+    private float timer = 0f;
+    [Space(5)]
+    [SerializeField] private KeyCode backKey = KeyCode.Escape;
 
     private IInteractable currentInteractable;
     private Target target;
-    private Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
-
+    
     public void SetTargetObject(Transform targetObject, Target target)
     {
-        virtualCamera.Follow = targetObject;
-        virtualCamera.LookAt = targetObject;
+        VirtualCamera.Follow = targetObject;
+        VirtualCamera.LookAt = targetObject;
 
         this.target = target;
     }
@@ -35,7 +40,7 @@ public class TargetSwitcher : MonoBehaviour
 
     private void LateUpdate()
     {
-        if (!isEnabled)
+        if (!IsEnabled)
             return;
 
         SearchInteractable();
@@ -44,7 +49,7 @@ public class TargetSwitcher : MonoBehaviour
 
         if (Input.GetKeyDown(backKey))
         {
-            SetTargetObject(playerObject, null);
+            SetTargetObject(NPCObject, null);
         }
     }
 
@@ -61,10 +66,21 @@ public class TargetSwitcher : MonoBehaviour
 
     private void Interact()
     {
-        if (currentInteractable == null || Input.GetKeyDown(interactionKey) != true)
+        if (currentInteractable == null || Input.GetKey(interactionKey) != true)
+        {
+            timer = 0f;
             return;
+        }
 
-        currentInteractable.Interact(this);
+        timer += Time.deltaTime;
+        Debug.Log($"Interation time {timer}");
+
+        if (timer >= interactionTimer)
+        {
+            timer = 0f;
+            currentInteractable.Interact(this);
+        }
+        
     }
 
     private void Activate()
@@ -83,7 +99,7 @@ public class TargetSwitcher : MonoBehaviour
 
     private IInteractable RaycastToInteractable()
     {
-        Ray ray = normalCamera.ScreenPointToRay(screenCenter);
+        Ray ray = NormalCamera.ScreenPointToRay(screenCenter);
 
         IInteractable output = null;
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactionMaxDistance))

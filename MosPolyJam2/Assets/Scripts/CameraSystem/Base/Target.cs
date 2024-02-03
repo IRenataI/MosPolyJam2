@@ -10,9 +10,15 @@ public class Target : MonoBehaviour, IInteractable
     [Header("Refs")]
     [SerializeField] protected Transform targetObject;
 
+    private void Start()
+    {
+        // set outline
+    }
+
     public void Deselect()
     {
         Debug.Log($"{this.name} deselected");
+        // change outline
     }
 
     public void Interact(TargetSwitcher switcher)
@@ -23,6 +29,7 @@ public class Target : MonoBehaviour, IInteractable
     public void Select()
     {
         Debug.Log($"{this.name} selected");
+        // change outline
     }
 
     public virtual IEnumerator Activate()
