@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -34,7 +36,6 @@ public class NonPlayableCharacter : MonoBehaviour
         if (movingDistance >= targetDistance)
         {
             transform.position = targetPosition;
-            StopMove();
             PointReached?.Invoke();
             return;
         }
@@ -47,8 +48,6 @@ public class NonPlayableCharacter : MonoBehaviour
         this.targetPosition = targetPosition;
         startPosition = transform.position;
 
-        transform.LookAt(targetPosition, Vector3.up);
-
         ContinueMove();
     }
 
@@ -56,7 +55,7 @@ public class NonPlayableCharacter : MonoBehaviour
     public void ContinueMove()
     {
         isMoving = true;
-
+        transform.LookAt(targetPosition, Vector3.up);
         animator.SetTrigger("Move");
     }
 
@@ -68,15 +67,20 @@ public class NonPlayableCharacter : MonoBehaviour
         animator.SetTrigger("Idle");
     }
 
+    public void StartToFreeze(string animationName)
+    {
+        isMoving = false;
+
+        animator.Play(animationName);
+    }
+
     public void Freeze()
     {
-        StopMove();
         animator.speed = 0f;
     }
 
     public void Unfreeze()
     {
-        ContinueMove();
         animator.speed = 1f;
     }
 }

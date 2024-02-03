@@ -5,6 +5,8 @@ public class TargetSwitcher : MonoBehaviour
 {
     public bool IsEnabled = true; //{ get; private set; }
 
+    public BaseDanger danger;
+
     [Header("Cameras")]
     public Camera NormalCamera;
     public CinemachineVirtualCamera VirtualCamera;
@@ -51,6 +53,7 @@ public class TargetSwitcher : MonoBehaviour
 
         if (Input.GetKeyDown(backKey))
         {
+            danger.Complete();
             SetTargetObject(NPCObject, null);
         }
     }

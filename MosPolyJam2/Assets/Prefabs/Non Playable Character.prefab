@@ -49,7 +49,7 @@ MonoBehaviour:
   PointReached:
     m_PersistentCalls:
       m_Calls: []
-  movingSpeed: 3
+  movingSpeed: 1.5
 --- !u!136 &3831033121744574188
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -148,8 +148,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8087405932025804342}
   m_SourcePrefab: {fileID: 100100000, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
+--- !u!1 &8527622566249684035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
+  m_PrefabInstance: {fileID: 8834191491152208146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8087405932025804342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8527622566249684035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48ccad789fee8e3449ff406b9b166c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npc: {fileID: 5885471900978274967}
+  progressManager: {fileID: 0}
 --- !u!4 &9012797033615623929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}

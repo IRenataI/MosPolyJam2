@@ -7,7 +7,9 @@ public class ProgressManager : MonoBehaviour
 
     [SerializeField] private bool activateOnStart = true;
     [SerializeField] private ProgressPoint[] progressPoints;
+    [Header("Refs")]
     [SerializeField] private NonPlayableCharacter npc;
+    [SerializeField] private TargetSwitcher targetSwitcher;
 
     private int targetProgressPoint;
 
@@ -21,10 +23,23 @@ public class ProgressManager : MonoBehaviour
     {
         progressPoints[targetProgressPoint].onReached?.Invoke();
 
-        if (progressPoints[targetProgressPoint].hasEvent)
+        BaseDanger danger = progressPoints[targetProgressPoint].dangerAction;
+
+        if (danger != null)
         {
-            npc.Freeze();
+            npc.StartToFreeze(danger.AnimationName);
+            targetSwitcher.IsEnabled = true;
+
+            danger.OnComplete.AddListener(delegate 
+            {
+                danger.OnComplete.RemoveAllListeners();
+                npc.Unfreeze();
+
+                targetSwitcher.IsEnabled = false;
+            });
             // запуск опасности, включение камеры спектатора
+
+            danger.Init();
 
             return;
         }
@@ -32,7 +47,7 @@ public class ProgressManager : MonoBehaviour
         MoveToNextProgressPoint();
     }
 
-    private void MoveToNextProgressPoint()
+    public void MoveToNextProgressPoint()
     {
         targetProgressPoint++;
 
@@ -91,7 +106,7 @@ public class ProgressManager : MonoBehaviour
             int backupIndex = FindInBackup(progressPointsTransformsEditor[i]);
             if (backupIndex >= 0)
             {
-                progressPoints[i].hasEvent = backup[backupIndex].hasEvent;
+                progressPoints[i].dangerAction = backup[backupIndex].dangerAction;
                 progressPoints[i].onReached = backup[backupIndex].onReached;
             }
         }

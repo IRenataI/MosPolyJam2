@@ -175,10 +175,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5885471900978274967, guid: 3684528c4e645ae4c80b77188f7dee51, type: 3}
-      propertyPath: movingSpeed
-      value: 1.5
-      objectReference: {fileID: 0}
+    - target: {fileID: 8087405932025804342, guid: 3684528c4e645ae4c80b77188f7dee51, type: 3}
+      propertyPath: progressManager
+      value: 
+      objectReference: {fileID: 1075568868}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -296,6 +296,51 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1075568869}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &652091153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 652091155}
+  - component: {fileID: 652091154}
+  m_Layer: 0
+  m_Name: Danger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &652091154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652091153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d4c7431f4f2a1648a8f516dc817b6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AnimationName: Tripping
+--- !u!4 &652091155
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 652091153}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &834730532
 GameObject:
@@ -698,21 +743,22 @@ MonoBehaviour:
   activateOnStart: 1
   progressPoints:
   - worldPositionTransform: {fileID: 1525439915}
-    hasEvent: 0
+    dangerAction: {fileID: 0}
     onReached:
       m_PersistentCalls:
         m_Calls: []
   - worldPositionTransform: {fileID: 600723390}
-    hasEvent: 0
+    dangerAction: {fileID: 652091154}
     onReached:
       m_PersistentCalls:
         m_Calls: []
   - worldPositionTransform: {fileID: 1020111936}
-    hasEvent: 0
+    dangerAction: {fileID: 0}
     onReached:
       m_PersistentCalls:
         m_Calls: []
   npc: {fileID: 64754981}
+  targetSwitcher: {fileID: 2055069214}
   progressPointsTransformsEditor:
   - {fileID: 1525439915}
   - {fileID: 600723390}
@@ -1068,6 +1114,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4237674788402113252, guid: 657d0db4ea5a5504988a0237c4b579f4, type: 3}
   m_PrefabInstance: {fileID: 1952115139}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2055069214 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7157695980736706467, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+  m_PrefabInstance: {fileID: 8998261837776573913}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1aab8b753b7bfc47b88a322f4dd4ae5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3655156384360684749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1181,23 +1238,19 @@ PrefabInstance:
     - target: {fileID: 6055608756890951806, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
       propertyPath: m_Follow
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64754980}
     - target: {fileID: 6055608756890951806, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
       propertyPath: m_LookAt
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 64754980}
     - target: {fileID: 7157695980736706467, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
-      propertyPath: IsEnabled
-      value: 0
-      objectReference: {fileID: 0}
+      propertyPath: danger
+      value: 
+      objectReference: {fileID: 652091154}
     - target: {fileID: 7157695980736706467, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
       propertyPath: NPCObject
       value: 
       objectReference: {fileID: 64754980}
-    - target: {fileID: 7157695980736706467, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
-      propertyPath: PlayerObject
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 9190831137486418163, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1219,3 +1272,4 @@ SceneRoots:
   - {fileID: 1736030407}
   - {fileID: 1651192782}
   - {fileID: 1075568869}
+  - {fileID: 652091155}
