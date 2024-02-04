@@ -44,9 +44,9 @@ public class ProgressManager : MonoBehaviour
     {
         currentDanger.OnComplete.RemoveListener(OnDangerCompleted);
         npc.Unfreeze();
-        targetSwitcher.IsEnabled = false;
 
-        targetSwitcher.SetTargetObject(npc.transform, null, targetSwitcher.NPCFollowOffset);
+        targetSwitcher.CurrentCameraState = CameraStates.Spectator;
+        targetSwitcher.IsEnabled = false;
 
         currentDanger = null;
     }

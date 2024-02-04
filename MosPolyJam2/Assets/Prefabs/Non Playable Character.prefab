@@ -142,7 +142,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: b3480f9e9671bea48b73e1f728764082, type: 2}
+      objectReference: {fileID: 9100000, guid: cdd117bb0e8b2bf4abf539a6b073eda4, type: 2}
     - target: {fileID: 5866666021909216657, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -154,6 +154,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8087405932025804342}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8935028615861876726}
   m_SourcePrefab: {fileID: 100100000, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
 --- !u!1 &8527622566249684035 stripped
 GameObject:
@@ -174,6 +177,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npc: {fileID: 5885471900978274967}
   progressManager: {fileID: 0}
+--- !u!114 &8935028615861876726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8527622566249684035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0500c68dcb00674682614e4c14d88ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthCount: 2
+  healthIconPrefab: {fileID: 4143271929054131485, guid: b7d08de778f2a9d44bf2f7a9426b6a63, type: 3}
+  healthParent: {fileID: 0}
 --- !u!4 &9012797033615623929 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}

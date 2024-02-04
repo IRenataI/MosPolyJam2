@@ -14,7 +14,7 @@ public abstract class BaseDanger : MonoBehaviour
     [SerializeField] private BaseTarget[] completeTargets;
     [SerializeField] private BaseTarget[] failTargets;
 
-    protected GameObject uiInstance;
+    protected GameObject uiPanel;
     protected Timer timer;
 
     protected void InitTargets()
@@ -28,7 +28,7 @@ public abstract class BaseDanger : MonoBehaviour
     public virtual void Init()
     {
         if (uiPrefab != null)
-            uiInstance = Instantiate(uiPrefab);
+            uiPanel = Instantiate(uiPrefab);
 
         timer = gameObject.AddComponent<Timer>();
 
@@ -42,8 +42,8 @@ public abstract class BaseDanger : MonoBehaviour
 
         Debug.Log("Complete");
 
-        if (uiPrefab != null)
-            Destroy(uiInstance);
+        if (uiPanel != null)
+            Destroy(uiPanel);
 
         IsCompleted = true;
 

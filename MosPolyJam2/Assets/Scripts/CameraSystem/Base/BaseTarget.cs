@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public abstract class BaseTarget : MonoBehaviour, IInteractable
 {
-    public bool IsActiveted { get; private set; }
+    public bool IsEnabled { get; set; } = false;
     public UnityEvent OnActivate { get; private set; } = new();
 
     [Header("Activation settings")]
@@ -30,7 +30,8 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
 
     public void Interact(TargetSwitcher switcher)
     {
-        switcher.SetTargetObject(targetObject != null ? targetObject : transform, this, cameraHeight * Vector3.up);
+        switcher.SetTargetObject(targetObject != null ? targetObject : transform, cameraHeight * Vector3.up);
+        switcher.SetTarget(this);
     }
 
     public void Select()
@@ -41,9 +42,7 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
 
     public virtual void Activate()
     {
-        IsActiveted = true;
         OnActivate?.Invoke();
-
         Debug.Log($"{this.name} has been activated");
     }
 
