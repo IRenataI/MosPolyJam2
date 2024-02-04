@@ -2,6 +2,6 @@
 public struct ProgressPoint
 {
     public UnityEngine.Transform worldPositionTransform;
-    public bool hasEvent;
+    public BaseDanger dangerAction;
     public UnityEngine.Events.UnityEvent onReached;
 }

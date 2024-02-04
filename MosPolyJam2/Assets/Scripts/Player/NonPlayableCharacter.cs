@@ -1,19 +1,22 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public class NonPlayableCharacter : MonoBehaviour
 {
-    [HideInInspector] public UnityEvent PointReached;
+    public UnityEvent PointReached { get; private set; } = new();
+    [HideInInspector] public bool StopMovingWhenPointReached = true;
 
     [SerializeField, Range(0.1f, 5f)] private float movingSpeed = 5f;
 
-    private Vector3 startPosition, targetPosition;
+    private Vector3 targetPosition;
     private bool isMoving;
     private Animator animator;
 
     private void Awake()
     {
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
     }
 
     private void Update()
@@ -34,7 +37,10 @@ public class NonPlayableCharacter : MonoBehaviour
         if (movingDistance >= targetDistance)
         {
             transform.position = targetPosition;
-            StopMove();
+
+            if (StopMovingWhenPointReached)
+                StopMove();
+
             PointReached?.Invoke();
             return;
         }
@@ -45,7 +51,6 @@ public class NonPlayableCharacter : MonoBehaviour
     public void StartMove(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
-        startPosition = transform.position;
 
         ContinueMove();
     }
@@ -54,7 +59,7 @@ public class NonPlayableCharacter : MonoBehaviour
     public void ContinueMove()
     {
         isMoving = true;
-
+        transform.LookAt(targetPosition, Vector3.up);
         animator.SetTrigger("Move");
     }
 
@@ -66,15 +71,20 @@ public class NonPlayableCharacter : MonoBehaviour
         animator.SetTrigger("Idle");
     }
 
+    public void StartToFreeze(string animationName)
+    {
+        isMoving = false;
+
+        animator.Play(animationName);
+    }
+
     public void Freeze()
     {
-        StopMove();
         animator.speed = 0f;
     }
 
     public void Unfreeze()
     {
-        ContinueMove();
         animator.speed = 1f;
     }
 }

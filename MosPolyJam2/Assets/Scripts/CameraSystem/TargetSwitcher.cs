@@ -1,17 +1,43 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TargetSwitcher : MonoBehaviour
 {
-    public bool IsEnabled { get; private set; } = true;
+    public bool IsEnabled
+    {
+        get { return isEnabled; }
+        set
+        {
+            if (value == isEnabled)
+                return;
+
+            isEnabled = value;
+            if (isEnabled)
+            {
+                virtualCamera.enabled = true;
+                spectatorCamera.Priority = 10;
+                virtualCamera.Priority = 20;
+                spectatorCamera.enabled = false;
+            }
+            else
+            {
+                spectatorCamera.transform.position = virtualCamera.transform.position;
+
+                spectatorCamera.enabled = true;
+                virtualCamera.Priority = 10;
+                spectatorCamera.Priority = 20;
+                virtualCamera.enabled = false;
+            }
+        }
+    }
+    private bool isEnabled;
 
     [Header("Cameras")]
-    public Camera NormalCamera;
-    public CinemachineVirtualCamera VirtualCamera;
-    private Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
-
-    [Header("Refs")]
-    public Transform NPCObject;
+    [SerializeField] private Camera normalCamera;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private CinemachineVirtualCamera spectatorCamera;
+    private Vector3 screenCenter = new(Screen.width / 2f, Screen.height / 2f, 0f);
 
     [Header("Interaction settings")]
     [SerializeField] private float interactionMaxDistance = 50f;
@@ -23,12 +49,16 @@ public class TargetSwitcher : MonoBehaviour
     [SerializeField] private KeyCode backKey = KeyCode.Escape;
 
     private IInteractable currentInteractable;
-    private Target target;
-    
-    public void SetTargetObject(Transform targetObject, Target target)
+    private BaseTarget target;
+
+    [Header("Refs")]
+    [SerializeField] private Transform npcObject;
+    [SerializeField] private Image timerImage;
+
+    public void SetTargetObject(Transform targetObject, BaseTarget target)
     {
-        VirtualCamera.Follow = targetObject;
-        VirtualCamera.LookAt = targetObject;
+        virtualCamera.Follow = targetObject;
+        virtualCamera.LookAt = targetObject;
 
         this.target = target;
     }
@@ -36,6 +66,9 @@ public class TargetSwitcher : MonoBehaviour
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        isEnabled = false;
+        SetTargetObject(npcObject, null);
     }
 
     private void LateUpdate()
@@ -44,12 +77,12 @@ public class TargetSwitcher : MonoBehaviour
             return;
 
         SearchInteractable();
-        Interact();
-        Activate();
+        InteractTarget();
+        ActivateTarget();
 
         if (Input.GetKeyDown(backKey))
         {
-            SetTargetObject(NPCObject, null);
+            SetTargetObject(npcObject, null);
         }
     }
 
@@ -64,47 +97,59 @@ public class TargetSwitcher : MonoBehaviour
         currentInteractable?.Select();
     }
 
-    private void Interact()
+    private void InteractTarget()
     {
         if (currentInteractable == null || Input.GetKey(interactionKey) != true)
         {
-            timer = 0f;
+            //ClearInteraction(); // every frame calls deselect() -> select() -> deselect() -> ...
             return;
         }
-
-        timer += Time.deltaTime;
-        Debug.Log($"Interation time {timer}");
 
         if (timer >= interactionTimer)
         {
-            timer = 0f;
             currentInteractable.Interact(this);
+
+            ClearInteraction();
         }
-        
+        else
+        {
+            timer += Time.deltaTime;
+            timerImage.fillAmount = timer / interactionTimer;
+        }
     }
 
-    private void Activate()
+    private void ActivateTarget()
     {
-        if (target == null || Input.GetKeyDown(target.activationKey) != true)
+        if (target == null || Input.GetKeyDown(target.activationKey) != true || target.IsActiveted)
             return;
 
-        StartCoroutine(target.Activate());
+        target.Activate();
     }
 
     private void ClearInteraction()
     {
-        currentInteractable?.Deselect();
-        currentInteractable = null;
+        timer = 0f;
+
+        if (currentInteractable != null)
+        {
+            currentInteractable.Deselect();
+            currentInteractable = null;
+
+            timerImage.fillAmount = 0f;
+        }
     }
 
     private IInteractable RaycastToInteractable()
     {
-        Ray ray = NormalCamera.ScreenPointToRay(screenCenter);
+        Ray ray = normalCamera.ScreenPointToRay(screenCenter);
 
         IInteractable output = null;
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactionMaxDistance))
         {
-            hitInfo.transform.TryGetComponent(out output);
+            if (!hitInfo.transform.TryGetComponent(out output))
+            {
+                ClearInteraction();
+            }
         }
         else
         {
