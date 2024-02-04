@@ -1,12 +1,13 @@
+using TMPro;
 using UnityEngine;
 
 public class TestDanger : BaseDanger
 {
-    public override void Init()
+    public override void Init(TextMeshProUGUI dangerTimerLabel)
     {
-        base.Init();
+        base.Init(dangerTimerLabel);
 
-        timer.StartTimer(dangerTimer, () => Complete(), true);
+        timer.StartTimer(dangerTime, () => Complete(), true);
 
         Debug.Log("Danger init");
     }

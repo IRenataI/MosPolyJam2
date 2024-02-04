@@ -38,10 +38,12 @@ public class TargetSwitcher : MonoBehaviour
 
     [Header("Cameras")]
     [SerializeField] private Camera normalCamera;
+    [Space(10)]
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private Vector3 followOffset = new(0f, 2.5f, 0f);
     [Space(10)]
     [SerializeField] private CinemachineVirtualCamera spectatorCamera;
+
     private Vector3 screenCenter = new(Screen.width / 2f, Screen.height / 2f, 0f);
     private CinemachineTransposer virtualCameraTransposer;
 

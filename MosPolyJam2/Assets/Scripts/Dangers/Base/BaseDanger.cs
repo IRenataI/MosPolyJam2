@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,12 +10,19 @@ public abstract class BaseDanger : MonoBehaviour
     public string AnimationName => animationName;
 
     [SerializeField] protected string animationName;
-    [SerializeField] protected float dangerTimer;
+    [SerializeField] protected float dangerTime;
     [SerializeField] protected GameObject uiPrefab;
+
     [SerializeField] private BaseTarget[] completeTargets;
     [SerializeField] private BaseTarget[] failTargets;
+    [SerializeField] private BaseTarget[] nonImpactTargets;
 
+<<<<<<< Updated upstream
     protected GameObject uiPanel;
+=======
+    protected TextMeshProUGUI dangerTimerLabel;
+    protected GameObject uiInstance;
+>>>>>>> Stashed changes
     protected Timer timer;
 
     protected void InitTargets()
@@ -25,12 +33,15 @@ public abstract class BaseDanger : MonoBehaviour
             target.OnActivate.AddListener(Fail);
     }
 
-    public virtual void Init()
+    public virtual void Init(TextMeshProUGUI dangerTimerLabel)
     {
+        this.dangerTimerLabel = dangerTimerLabel;
+
         if (uiPrefab != null)
             uiPanel = Instantiate(uiPrefab);
 
         timer = gameObject.AddComponent<Timer>();
+        timer.TimeChanged.AddListener(OnTimerTick);
 
         InitTargets();
     }
@@ -53,5 +64,11 @@ public abstract class BaseDanger : MonoBehaviour
     public virtual void Fail()
     {
         Debug.Log("Fail");
+    }
+
+    public virtual void OnTimerTick(float remainingTime)
+    {
+        if (dangerTimerLabel != null)
+            dangerTimerLabel.text = ((int)remainingTime).ToString();
     }
 }

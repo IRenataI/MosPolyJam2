@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,9 +8,14 @@ public class ProgressManager : MonoBehaviour
 
     [SerializeField] private bool activateOnStart = true;
     [SerializeField] private ProgressPoint[] progressPoints;
+
     [Header("Refs")]
     [SerializeField] private NonPlayableCharacter npc;
     [SerializeField] private TargetSwitcher targetSwitcher;
+
+    [Header("Danger Timer")]
+    [SerializeField] private GameObject dangerTimer;
+    [SerializeField] private TextMeshProUGUI dangerTimerLabel;
 
     private int targetProgressPoint;
     private BaseDanger currentDanger;
@@ -18,6 +24,8 @@ public class ProgressManager : MonoBehaviour
     {
         if (activateOnStart)
             StartLevel();
+
+        dangerTimer.SetActive(false);
     }
 
     private void OnPointReached()
@@ -30,7 +38,8 @@ public class ProgressManager : MonoBehaviour
             npc.StartToFreeze(currentDanger.AnimationName);
 
             currentDanger.OnComplete.AddListener(OnDangerCompleted);
-            currentDanger.Init(); 
+            currentDanger.Init(dangerTimerLabel);
+            dangerTimer.SetActive(true);
 
             targetSwitcher.IsEnabled = true;
 
