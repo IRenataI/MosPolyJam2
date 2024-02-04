@@ -17,12 +17,9 @@ public abstract class BaseDanger : MonoBehaviour
     [SerializeField] private BaseTarget[] failTargets;
     [SerializeField] private BaseTarget[] nonImpactTargets;
 
-<<<<<<< Updated upstream
-    protected GameObject uiPanel;
-=======
     protected TextMeshProUGUI dangerTimerLabel;
-    protected GameObject uiInstance;
->>>>>>> Stashed changes
+    protected GameObject uiPanel;
+
     protected Timer timer;
 
     protected void InitTargets()
