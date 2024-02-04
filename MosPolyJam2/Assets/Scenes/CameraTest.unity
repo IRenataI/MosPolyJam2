@@ -187,6 +187,10 @@ PrefabInstance:
       propertyPath: progressManager
       value: 
       objectReference: {fileID: 1075568868}
+    - target: {fileID: 8935028615861876726, guid: 3684528c4e645ae4c80b77188f7dee51, type: 3}
+      propertyPath: healthParent
+      value: 
+      objectReference: {fileID: 766222365}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -350,6 +354,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!224 &766222365 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 3174883773271397457, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
+  m_PrefabInstance: {fileID: 7173239893664561303}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &869847265
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,7 +656,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - worldPositionTransform: {fileID: 1020111936}
-    dangerAction: {fileID: 0}
+    dangerAction: {fileID: 652091154}
     onReached:
       m_PersistentCalls:
         m_Calls: []
