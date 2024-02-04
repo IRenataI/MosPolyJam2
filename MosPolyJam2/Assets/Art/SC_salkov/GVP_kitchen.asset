@@ -66,6 +66,7 @@ MonoBehaviour:
   - {fileID: 8285508047006440091}
   - {fileID: 93131584927831428}
   - {fileID: 8740967198435827299}
+  - {fileID: 6950094477400927815}
 --- !u!114 &93131584927831428
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -134,6 +135,25 @@ MonoBehaviour:
   maxNits:
     m_OverrideState: 0
     m_Value: 1000
+--- !u!114 &6950094477400927815
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
+  m_Name: WhiteBalance
+  m_EditorClassIdentifier: 
+  active: 1
+  temperature:
+    m_OverrideState: 1
+    m_Value: 30
+  tint:
+    m_OverrideState: 0
+    m_Value: 0
 --- !u!114 &7206339328728382863
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -171,7 +191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 899c54efeace73346a0a16faa3afe726, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   color:
     m_OverrideState: 1
     m_Value: {r: 0.02641511, g: 0.018489953, b: 0.009320048, a: 1}
@@ -202,13 +222,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 0.63024384}
+    m_Value: {x: 1, y: 0.9779291, z: 0.9226524, w: -0.009569515}
   midtones:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.02870806}
   highlights:
-    m_OverrideState: 0
-    m_Value: {x: 1, y: 1, z: 1, w: 0}
+    m_OverrideState: 1
+    m_Value: {x: 1, y: 1, z: 1, w: 0.02870861}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0

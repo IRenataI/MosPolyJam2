@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 69bf74716b5b79b43b7304d217f6ec23
+guid: 3a847eafb5ff9d24cb4f6484050c2b66
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,23 +7,8 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: MTL_emissive
-    second: {fileID: 2100000, guid: fc45e80a2a4812d48ad60206a4fb80f4, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MTL_glass
-    second: {fileID: 2100000, guid: 2e4d28449e78c434d8d4c777a84faf52, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: MTL_main
+      name: MTL_metal
     second: {fileID: 2100000, guid: 0a3d2ff757acbc84986ccaf9fe16de7e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: lambert1
-    second: {fileID: 2100000, guid: 95ff864ef1809b042bd2ebcc4224b7f6, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
