@@ -7,7 +7,7 @@ public class Timer : MonoBehaviour
 {
     public UnityEvent<float> TimeChanged { get; private set; } = new();
 
-    private UnityEvent expired;
+    private Action expired;
     private float time;
     private bool isStopped = true;
     private bool destroyOnExpired;
@@ -30,6 +30,7 @@ public class Timer : MonoBehaviour
 
     private void OnExpired()
     {
+        Debug.Log("Timer Expired");
         isStopped = true;
         expired?.Invoke();
 
@@ -39,14 +40,14 @@ public class Timer : MonoBehaviour
 
     public void StartTimer(float time, Action expired, bool destroyOnExpired = true)
     {
-        if (IsExpired)
+        if (time <= 0f)
         {
             OnExpired();
             return;
         }
 
-        this.expired = (UnityEvent)expired.Target;
         this.time = time;
+        this.expired = expired;
         this.destroyOnExpired = destroyOnExpired;
         isStopped = false;
     }
