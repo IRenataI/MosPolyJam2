@@ -26,12 +26,12 @@ public class TargetSwitcher : MonoBehaviour
     [SerializeField] private KeyCode backKey = KeyCode.Escape;
 
     private IInteractable currentInteractable;
-    private Target target;
+    private BaseTarget target;
     
     [Header("UI")]
     [SerializeField] private Image timerImage;
 
-    public void SetTargetObject(Transform targetObject, Target target)
+    public void SetTargetObject(Transform targetObject, BaseTarget target)
     {
         virtualCamera.Follow = targetObject;
         virtualCamera.LookAt = targetObject;

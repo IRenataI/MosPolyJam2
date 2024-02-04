@@ -24,11 +24,6 @@ public class ProgressManager : MonoBehaviour
     {
         progressPoints[targetProgressPoint].onReached?.Invoke();
 
-        if (currentDanger != null)
-        {
-            Debug.LogError($"Danger \"{currentDanger.name}\" alredy active. Unable to activate \"{progressPoints[targetProgressPoint].dangerAction.name}\" danger");
-            return;
-        }
         currentDanger = progressPoints[targetProgressPoint].dangerAction;
         if (currentDanger != null)
         {
@@ -50,6 +45,8 @@ public class ProgressManager : MonoBehaviour
         currentDanger.OnComplete.RemoveListener(OnDangerCompleted);
         npc.Unfreeze();
         targetSwitcher.IsEnabled = false;
+
+        currentDanger = null;
     }
 
     public void MoveToNextProgressPoint()

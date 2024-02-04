@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Target : MonoBehaviour, IInteractable
+public class BaseTarget : MonoBehaviour, IInteractable
 {
     [Header("Activation settings")]
     public KeyCode activationKey;

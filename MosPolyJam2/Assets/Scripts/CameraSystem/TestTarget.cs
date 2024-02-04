@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BaseTarget : Target
+public class TestTarget : BaseTarget
 {
     public override IEnumerator Activate()
     {

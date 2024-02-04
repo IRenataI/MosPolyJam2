@@ -9,8 +9,9 @@ public abstract class BaseDanger : MonoBehaviour
 
     public string AnimationName => animationName;
 
-    [SerializeField] private string animationName;
-    [SerializeField] private GameObject uiPrefab;
+    [SerializeField] protected string animationName;
+    [SerializeField] protected float dangerTimer;
+    [SerializeField] protected GameObject uiPrefab;
 
     private GameObject uiInstance;
 

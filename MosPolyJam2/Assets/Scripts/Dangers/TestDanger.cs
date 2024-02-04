@@ -6,7 +6,7 @@ public class TestDanger : BaseDanger
     {
         base.Init();
 
-        timer.StartTimer(5f, () => Complete(), true);
+        timer.StartTimer(dangerTimer, () => Complete(), true);
 
         Debug.Log("Danger init");
     }
