@@ -3,13 +3,16 @@ using UnityEngine.Events;
 
 public class ProgressManager : MonoBehaviour
 {
-    [HideInInspector] public UnityEvent OnComplete;
+    public UnityEvent OnComplete { get; private set; } = new();
 
     [SerializeField] private bool activateOnStart = true;
     [SerializeField] private ProgressPoint[] progressPoints;
+    [Header("Refs")]
     [SerializeField] private NonPlayableCharacter npc;
+    [SerializeField] private TargetSwitcher targetSwitcher;
 
     private int targetProgressPoint;
+    private BaseDanger currentDanger;
 
     private void Start()
     {
@@ -21,10 +24,15 @@ public class ProgressManager : MonoBehaviour
     {
         progressPoints[targetProgressPoint].onReached?.Invoke();
 
-        if (progressPoints[targetProgressPoint].hasEvent)
+        currentDanger = progressPoints[targetProgressPoint].dangerAction;
+        if (currentDanger != null)
         {
-            npc.Freeze();
-            // запуск опасности, включение камеры спектатора
+            npc.StartToFreeze(currentDanger.AnimationName);
+
+            currentDanger.OnComplete.AddListener(OnDangerCompleted);
+            currentDanger.Init(); 
+
+            targetSwitcher.IsEnabled = true;
 
             return;
         }
@@ -32,7 +40,18 @@ public class ProgressManager : MonoBehaviour
         MoveToNextProgressPoint();
     }
 
-    private void MoveToNextProgressPoint()
+    private void OnDangerCompleted()
+    {
+        currentDanger.OnComplete.RemoveListener(OnDangerCompleted);
+        npc.Unfreeze();
+        targetSwitcher.IsEnabled = false;
+
+        targetSwitcher.SetTargetObject(npc.transform, null);
+
+        currentDanger = null;
+    }
+
+    public void MoveToNextProgressPoint()
     {
         targetProgressPoint++;
 
@@ -49,6 +68,7 @@ public class ProgressManager : MonoBehaviour
     private void FinishLevel()
     {
         StopLevel();
+        npc.StopMovingWhenPointReached = true;
         npc.PointReached.RemoveListener(OnPointReached);
 
         OnComplete?.Invoke();
@@ -58,6 +78,7 @@ public class ProgressManager : MonoBehaviour
     public void StartLevel()
     {
         targetProgressPoint = 1;
+        npc.StopMovingWhenPointReached = false;
         npc.PointReached.AddListener(OnPointReached);
 
         npc.transform.position = progressPoints[0].worldPositionTransform.position;
@@ -91,7 +112,7 @@ public class ProgressManager : MonoBehaviour
             int backupIndex = FindInBackup(progressPointsTransformsEditor[i]);
             if (backupIndex >= 0)
             {
-                progressPoints[i].hasEvent = backup[backupIndex].hasEvent;
+                progressPoints[i].dangerAction = backup[backupIndex].dangerAction;
                 progressPoints[i].onReached = backup[backupIndex].onReached;
             }
         }
