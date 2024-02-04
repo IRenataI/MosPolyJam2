@@ -4,17 +4,40 @@ using UnityEngine.UI;
 
 public class TargetSwitcher : MonoBehaviour
 {
-    public bool IsEnabled = true; //{ get; private set; }
+    public bool IsEnabled
+    {
+        get { return isEnabled; }
+        set
+        {
+            if (value == isEnabled)
+                return;
 
-    public BaseDanger danger; // to delete
+            isEnabled = value;
+            if (isEnabled)
+            {
+                virtualCamera.enabled = true;
+                spectatorCamera.Priority = 10;
+                virtualCamera.Priority = 20;
+                spectatorCamera.enabled = false;
+            }
+            else
+            {
+                spectatorCamera.transform.position = virtualCamera.transform.position;
+
+                spectatorCamera.enabled = true;
+                virtualCamera.Priority = 10;
+                spectatorCamera.Priority = 20;
+                virtualCamera.enabled = false;
+            }
+        }
+    }
+    private bool isEnabled;
 
     [Header("Cameras")]
     [SerializeField] private Camera normalCamera;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private CinemachineVirtualCamera spectatorCamera;
     private Vector3 screenCenter = new(Screen.width / 2f, Screen.height / 2f, 0f);
-
-    [Header("Refs")]
-    [SerializeField] private Transform npcObject;
 
     [Header("Interaction settings")]
     [SerializeField] private float interactionMaxDistance = 50f;
@@ -27,8 +50,9 @@ public class TargetSwitcher : MonoBehaviour
 
     private IInteractable currentInteractable;
     private BaseTarget target;
-    
-    [Header("UI")]
+
+    [Header("Refs")]
+    [SerializeField] private Transform npcObject;
     [SerializeField] private Image timerImage;
 
     public void SetTargetObject(Transform targetObject, BaseTarget target)
@@ -52,12 +76,11 @@ public class TargetSwitcher : MonoBehaviour
             return;
 
         SearchInteractable();
-        Interact();
-        Activate();
+        InteractTarget();
+        ActivateTarget();
 
         if (Input.GetKeyDown(backKey))
         {
-            danger.Complete();
             SetTargetObject(npcObject, null);
         }
     }
@@ -73,36 +96,39 @@ public class TargetSwitcher : MonoBehaviour
         currentInteractable?.Select();
     }
 
-    private void Interact()
+    private void InteractTarget()
     {
         if (currentInteractable == null || Input.GetKey(interactionKey) != true)
         {
-            timer = 0f;
+            ClearInteraction();
             return;
         }
-
-        timer += Time.deltaTime;
-        timerImage.fillAmount = timer / interactionTimer;
-        // Debug.Log($"Interation time {timer}");
 
         if (timer >= interactionTimer)
         {
-            timer = 0f;
-            timerImage.fillAmount = 0f;
             currentInteractable.Interact(this);
+
+            ClearInteraction();
+        }
+        else
+        {
+            timer += Time.deltaTime;
+            timerImage.fillAmount = timer / interactionTimer;
         }
     }
 
-    private void Activate()
+    private void ActivateTarget()
     {
-        if (target == null || Input.GetKeyDown(target.activationKey) != true)
+        if (target == null || Input.GetKeyDown(target.activationKey) != true || target.IsActiveted)
             return;
 
-        StartCoroutine(target.Activate());
+        target.Activate();
     }
 
     private void ClearInteraction()
     {
+        timer = 0f;
+
         if (currentInteractable != null)
         {
             currentInteractable.Deselect();
@@ -119,7 +145,10 @@ public class TargetSwitcher : MonoBehaviour
         IInteractable output = null;
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactionMaxDistance))
         {
-            hitInfo.transform.TryGetComponent(out output);
+            if (!hitInfo.transform.TryGetComponent(out output))
+            {
+                ClearInteraction();
+            }
         }
         else
         {

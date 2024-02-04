@@ -1,15 +1,11 @@
-using System.Collections;
 using UnityEngine;
 
 public class TestTarget : BaseTarget
 {
-    public override IEnumerator Activate()
+    public override void Activate()
     {
-        StartCoroutine(base.Activate());
+        base.Activate();
 
-        isActive = true;
-        yield return new WaitForSeconds(2f);
-        isActive = false;
-        Debug.Log($"{this.name} has been deactivated");
+        Instantiate(ActivationVFX, this.transform);
     }
 }

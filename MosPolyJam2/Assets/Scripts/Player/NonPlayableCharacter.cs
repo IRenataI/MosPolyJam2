@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class NonPlayableCharacter : MonoBehaviour
 {
-    [HideInInspector] public UnityEvent PointReached;
+    public UnityEvent PointReached { get; private set; } = new();
     [HideInInspector] public bool StopMovingWhenPointReached = true;
 
     [SerializeField, Range(0.1f, 5f)] private float movingSpeed = 5f;

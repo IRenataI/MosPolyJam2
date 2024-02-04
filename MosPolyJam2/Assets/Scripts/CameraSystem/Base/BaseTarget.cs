@@ -1,17 +1,22 @@
-using System.Collections;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class BaseTarget : MonoBehaviour, IInteractable
+public abstract class BaseTarget : MonoBehaviour, IInteractable
 {
+    public bool IsActiveted { get; private set; }
+    public UnityEvent OnActivate { get; private set; } = new();
+
     [Header("Activation settings")]
     public KeyCode activationKey;
-    protected bool isActive;
 
     [Header("Refs")]
     [SerializeField] protected Transform targetObject;
+    [SerializeField] protected GameObject ActivationVFX;
+    protected Animator anim;
 
     private void Start()
     {
+        anim = GetComponent<Animator>();
         // set outline
     }
 
@@ -32,9 +37,11 @@ public class BaseTarget : MonoBehaviour, IInteractable
         // change outline
     }
 
-    public virtual IEnumerator Activate()
+    public virtual void Activate()
     {
+        IsActiveted = true;
+        OnActivate?.Invoke();
+
         Debug.Log($"{this.name} has been activated");
-        yield return new WaitForEndOfFrame();
     }
 }

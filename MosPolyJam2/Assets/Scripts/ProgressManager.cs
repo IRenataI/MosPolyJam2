@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class ProgressManager : MonoBehaviour
 {
-    [HideInInspector] public UnityEvent OnComplete;
+    public UnityEvent OnComplete { get; private set; } = new();
 
     [SerializeField] private bool activateOnStart = true;
     [SerializeField] private ProgressPoint[] progressPoints;
@@ -45,6 +45,8 @@ public class ProgressManager : MonoBehaviour
         currentDanger.OnComplete.RemoveListener(OnDangerCompleted);
         npc.Unfreeze();
         targetSwitcher.IsEnabled = false;
+
+        targetSwitcher.SetTargetObject(npc.transform, null);
 
         currentDanger = null;
     }
