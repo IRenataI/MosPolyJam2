@@ -1,19 +1,20 @@
 using Cinemachine;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TargetSwitcher : MonoBehaviour
 {
     public bool IsEnabled = true; //{ get; private set; }
 
-    public BaseDanger danger;
+    public BaseDanger danger; // to delete
 
     [Header("Cameras")]
-    public Camera NormalCamera;
-    public CinemachineVirtualCamera VirtualCamera;
-    private Vector3 screenCenter = new Vector3(Screen.width / 2f, Screen.height / 2f, 0f);
+    [SerializeField] private Camera normalCamera;
+    [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    private Vector3 screenCenter = new(Screen.width / 2f, Screen.height / 2f, 0f);
 
     [Header("Refs")]
-    public Transform NPCObject;
+    [SerializeField] private Transform npcObject;
 
     [Header("Interaction settings")]
     [SerializeField] private float interactionMaxDistance = 50f;
@@ -27,10 +28,13 @@ public class TargetSwitcher : MonoBehaviour
     private IInteractable currentInteractable;
     private Target target;
     
+    [Header("UI")]
+    [SerializeField] private Image timerImage;
+
     public void SetTargetObject(Transform targetObject, Target target)
     {
-        VirtualCamera.Follow = targetObject;
-        VirtualCamera.LookAt = targetObject;
+        virtualCamera.Follow = targetObject;
+        virtualCamera.LookAt = targetObject;
 
         this.target = target;
     }
@@ -39,7 +43,7 @@ public class TargetSwitcher : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        SetTargetObject(NPCObject, null);
+        SetTargetObject(npcObject, null);
     }
 
     private void LateUpdate()
@@ -54,7 +58,7 @@ public class TargetSwitcher : MonoBehaviour
         if (Input.GetKeyDown(backKey))
         {
             danger.Complete();
-            SetTargetObject(NPCObject, null);
+            SetTargetObject(npcObject, null);
         }
     }
 
@@ -78,14 +82,15 @@ public class TargetSwitcher : MonoBehaviour
         }
 
         timer += Time.deltaTime;
-        Debug.Log($"Interation time {timer}");
+        timerImage.fillAmount = timer / interactionTimer;
+        // Debug.Log($"Interation time {timer}");
 
         if (timer >= interactionTimer)
         {
             timer = 0f;
+            timerImage.fillAmount = 0f;
             currentInteractable.Interact(this);
         }
-        
     }
 
     private void Activate()
@@ -98,13 +103,18 @@ public class TargetSwitcher : MonoBehaviour
 
     private void ClearInteraction()
     {
-        currentInteractable?.Deselect();
-        currentInteractable = null;
+        if (currentInteractable != null)
+        {
+            currentInteractable.Deselect();
+            currentInteractable = null;
+
+            timerImage.fillAmount = 0f;
+        }
     }
 
     private IInteractable RaycastToInteractable()
     {
-        Ray ray = NormalCamera.ScreenPointToRay(screenCenter);
+        Ray ray = normalCamera.ScreenPointToRay(screenCenter);
 
         IInteractable output = null;
         if (Physics.Raycast(ray, out RaycastHit hitInfo, interactionMaxDistance))

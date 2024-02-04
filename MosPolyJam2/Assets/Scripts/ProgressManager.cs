@@ -12,6 +12,7 @@ public class ProgressManager : MonoBehaviour
     [SerializeField] private TargetSwitcher targetSwitcher;
 
     private int targetProgressPoint;
+    private BaseDanger currentDanger;
 
     private void Start()
     {
@@ -23,28 +24,32 @@ public class ProgressManager : MonoBehaviour
     {
         progressPoints[targetProgressPoint].onReached?.Invoke();
 
-        BaseDanger danger = progressPoints[targetProgressPoint].dangerAction;
-
-        if (danger != null)
+        if (currentDanger != null)
         {
-            npc.StartToFreeze(danger.AnimationName);
+            Debug.LogError($"Danger \"{currentDanger.name}\" alredy active. Unable to activate \"{progressPoints[targetProgressPoint].dangerAction.name}\" danger");
+            return;
+        }
+        currentDanger = progressPoints[targetProgressPoint].dangerAction;
+        if (currentDanger != null)
+        {
+            npc.StartToFreeze(currentDanger.AnimationName);
+
+            currentDanger.OnComplete.AddListener(OnDangerCompleted);
+            currentDanger.Init(); 
+
             targetSwitcher.IsEnabled = true;
-
-            danger.OnComplete.AddListener(delegate 
-            {
-                danger.OnComplete.RemoveAllListeners();
-                npc.Unfreeze();
-
-                targetSwitcher.IsEnabled = false;
-            });
-            // запуск опасности, включение камеры спектатора
-
-            danger.Init();
 
             return;
         }
 
         MoveToNextProgressPoint();
+    }
+
+    private void OnDangerCompleted()
+    {
+        currentDanger.OnComplete.RemoveListener(OnDangerCompleted);
+        npc.Unfreeze();
+        targetSwitcher.IsEnabled = false;
     }
 
     public void MoveToNextProgressPoint()

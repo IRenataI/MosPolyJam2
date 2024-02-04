@@ -5,9 +5,11 @@ using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
+    public UnityEvent<float> TimeChanged { get; private set; } = new();
+
     private UnityEvent expired;
     private float time;
-    private bool isStopped;
+    private bool isStopped = true;
     private bool destroyOnExpired;
 
     private bool IsExpired => time <= 0;
@@ -17,7 +19,8 @@ public class Timer : MonoBehaviour
         if (isStopped)
             return;
 
-        time -= Time.deltaTime;
+        time = Mathf.Max(time - Time.deltaTime, 0);
+        TimeChanged.Invoke(time);
 
         if (IsExpired)
         {
@@ -28,7 +31,7 @@ public class Timer : MonoBehaviour
     private void OnExpired()
     {
         isStopped = true;
-        expired.Invoke();
+        expired?.Invoke();
 
         if (destroyOnExpired)
             Destroy(this);
