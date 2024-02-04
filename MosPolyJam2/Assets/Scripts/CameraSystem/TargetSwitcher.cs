@@ -33,11 +33,16 @@ public class TargetSwitcher : MonoBehaviour
     }
     private bool isEnabled;
 
+    public Vector3 NPCFollowOffset => followOffset;
+
     [Header("Cameras")]
     [SerializeField] private Camera normalCamera;
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
+    [SerializeField] private Vector3 followOffset = new(0f, 2.5f, 0f);
+    [Space(10)]
     [SerializeField] private CinemachineVirtualCamera spectatorCamera;
     private Vector3 screenCenter = new(Screen.width / 2f, Screen.height / 2f, 0f);
+    private CinemachineTransposer virtualCameraTransposer;
 
     [Header("Interaction settings")]
     [SerializeField] private float interactionMaxDistance = 50f;
@@ -55,10 +60,12 @@ public class TargetSwitcher : MonoBehaviour
     [SerializeField] private Transform npcObject;
     [SerializeField] private Image timerImage;
 
-    public void SetTargetObject(Transform targetObject, BaseTarget target)
+    public void SetTargetObject(Transform targetObject, BaseTarget target, Vector3 followOffset)
     {
         virtualCamera.Follow = targetObject;
         virtualCamera.LookAt = targetObject;
+
+        virtualCameraTransposer.m_FollowOffset = followOffset;
 
         this.target = target;
     }
@@ -67,8 +74,8 @@ public class TargetSwitcher : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        isEnabled = false;
-        SetTargetObject(npcObject, null);
+        virtualCameraTransposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+        SetTargetObject(npcObject, null, followOffset);
     }
 
     private void LateUpdate()
@@ -82,7 +89,7 @@ public class TargetSwitcher : MonoBehaviour
 
         if (Input.GetKeyDown(backKey))
         {
-            SetTargetObject(npcObject, null);
+            SetTargetObject(npcObject, null, followOffset);
         }
     }
 

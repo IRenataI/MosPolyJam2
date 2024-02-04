@@ -46,9 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e05ed11b76f1c94d933992abcfa2b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PointReached:
-    m_PersistentCalls:
-      m_Calls: []
+  StopMovingWhenPointReached: 1
   movingSpeed: 1.5
 --- !u!136 &3831033121744574188
 CapsuleCollider:
@@ -145,6 +143,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b3480f9e9671bea48b73e1f728764082, type: 2}
+    - target: {fileID: 5866666021909216657, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
+      propertyPath: m_ApplyRootMotion
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
