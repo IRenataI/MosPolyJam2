@@ -11,10 +11,19 @@ public abstract class BaseDanger : MonoBehaviour
     [SerializeField] protected string animationName;
     [SerializeField] protected float dangerTimer;
     [SerializeField] protected GameObject uiPrefab;
+    [SerializeField] private BaseTarget[] completeTargets;
+    [SerializeField] private BaseTarget[] failTargets;
 
-    private GameObject uiInstance;
-
+    protected GameObject uiInstance;
     protected Timer timer;
+
+    protected void InitTargets()
+    {
+        foreach (BaseTarget target in completeTargets)
+            target.OnActivate.AddListener(Complete);
+        foreach (BaseTarget target in failTargets)
+            target.OnActivate.AddListener(Fail);
+    }
 
     public virtual void Init()
     {
@@ -22,6 +31,8 @@ public abstract class BaseDanger : MonoBehaviour
             uiInstance = Instantiate(uiPrefab);
 
         timer = gameObject.AddComponent<Timer>();
+
+        InitTargets();
     }
 
     public virtual void Complete()
@@ -29,11 +40,18 @@ public abstract class BaseDanger : MonoBehaviour
         if (IsCompleted)
             return;
 
+        Debug.Log("Complete");
+
         if (uiPrefab != null)
             Destroy(uiInstance);
 
         IsCompleted = true;
 
         OnComplete?.Invoke();
+    }
+
+    public virtual void Fail()
+    {
+        Debug.Log("Fail");
     }
 }
