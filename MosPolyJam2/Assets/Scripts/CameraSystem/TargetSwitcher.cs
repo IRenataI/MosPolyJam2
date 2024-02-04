@@ -67,6 +67,7 @@ public class TargetSwitcher : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
+        isEnabled = false;
         SetTargetObject(npcObject, null);
     }
 
@@ -100,7 +101,7 @@ public class TargetSwitcher : MonoBehaviour
     {
         if (currentInteractable == null || Input.GetKey(interactionKey) != true)
         {
-            ClearInteraction();
+            //ClearInteraction(); // every frame calls deselect() -> select() -> deselect() -> ...
             return;
         }
 

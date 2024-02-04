@@ -600,13 +600,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aab8b753b7bfc47b88a322f4dd4ae5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  IsEnabled: 0
-  danger: {fileID: 0}
   normalCamera: {fileID: 8107031089309802251}
   virtualCamera: {fileID: 6055608756890951806}
-  npcObject: {fileID: 0}
+  spectatorCamera: {fileID: 1141284746537488764}
   interactionMaxDistance: 100
   interactionKey: 101
   interactionTimer: 1.5
   backKey: 32
+  npcObject: {fileID: 0}
   timerImage: {fileID: 0}
