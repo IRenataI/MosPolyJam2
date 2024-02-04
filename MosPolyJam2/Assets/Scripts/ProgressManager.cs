@@ -64,6 +64,7 @@ public class ProgressManager : MonoBehaviour
     private void FinishLevel()
     {
         StopLevel();
+        npc.StopMovingWhenPointReached = true;
         npc.PointReached.RemoveListener(OnPointReached);
 
         OnComplete?.Invoke();
@@ -73,6 +74,7 @@ public class ProgressManager : MonoBehaviour
     public void StartLevel()
     {
         targetProgressPoint = 1;
+        npc.StopMovingWhenPointReached = false;
         npc.PointReached.AddListener(OnPointReached);
 
         npc.transform.position = progressPoints[0].worldPositionTransform.position;

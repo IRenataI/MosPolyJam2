@@ -6,10 +6,11 @@ using UnityEngine.Events;
 public class NonPlayableCharacter : MonoBehaviour
 {
     [HideInInspector] public UnityEvent PointReached;
+    [HideInInspector] public bool StopMovingWhenPointReached = true;
 
     [SerializeField, Range(0.1f, 5f)] private float movingSpeed = 5f;
 
-    private Vector3 startPosition, targetPosition;
+    private Vector3 targetPosition;
     private bool isMoving;
     private Animator animator;
 
@@ -36,6 +37,10 @@ public class NonPlayableCharacter : MonoBehaviour
         if (movingDistance >= targetDistance)
         {
             transform.position = targetPosition;
+
+            if (StopMovingWhenPointReached)
+                StopMove();
+
             PointReached?.Invoke();
             return;
         }
@@ -46,7 +51,6 @@ public class NonPlayableCharacter : MonoBehaviour
     public void StartMove(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
-        startPosition = transform.position;
 
         ContinueMove();
     }
