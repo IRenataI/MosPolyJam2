@@ -8,17 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MTL_emissive
-    second: {fileID: 2100000, guid: 0080cbdbc6870894a94971d1792b01d3, type: 2}
+    second: {fileID: 2100000, guid: fc45e80a2a4812d48ad60206a4fb80f4, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MTL_glass
-    second: {fileID: 2100000, guid: 95e50d46fce6c1f49a2c2feac3ff30d3, type: 2}
+    second: {fileID: 2100000, guid: 2e4d28449e78c434d8d4c777a84faf52, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: MTL_main
-    second: {fileID: 2100000, guid: 95ff864ef1809b042bd2ebcc4224b7f6, type: 2}
+    second: {fileID: 2100000, guid: 0a3d2ff757acbc84986ccaf9fe16de7e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
