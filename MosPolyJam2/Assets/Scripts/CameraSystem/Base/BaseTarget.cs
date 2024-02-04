@@ -12,6 +12,8 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
     [Header("Refs")]
     [SerializeField] protected Transform targetObject;
     [SerializeField] protected GameObject ActivationVFX;
+    [SerializeField] protected float cameraHeight = 1f;
+
     protected Animator anim;
 
     private void Start()
@@ -28,7 +30,7 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
 
     public void Interact(TargetSwitcher switcher)
     {
-        switcher.SetTargetObject(targetObject, this);
+        switcher.SetTargetObject(targetObject != null ? targetObject : transform, this, cameraHeight * Vector3.up);
     }
 
     public void Select()
@@ -43,5 +45,11 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
         OnActivate?.Invoke();
 
         Debug.Log($"{this.name} has been activated");
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position + cameraHeight * Vector3.up, 0.05f);
     }
 }

@@ -8,4 +8,12 @@ public class TestTarget : BaseTarget
 
         Instantiate(ActivationVFX, this.transform);
     }
+
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.E))
+        {
+            Activate();
+        }
+    }
 }

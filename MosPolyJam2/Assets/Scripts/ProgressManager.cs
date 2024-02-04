@@ -46,7 +46,7 @@ public class ProgressManager : MonoBehaviour
         npc.Unfreeze();
         targetSwitcher.IsEnabled = false;
 
-        targetSwitcher.SetTargetObject(npc.transform, null);
+        targetSwitcher.SetTargetObject(npc.transform, null, targetSwitcher.NPCFollowOffset);
 
         currentDanger = null;
     }
