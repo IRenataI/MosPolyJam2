@@ -64,6 +64,7 @@ public class TargetSwitcher : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private Transform npcObject;
     [SerializeField] private Image timerImage;
+    [SerializeField] private Compass compass;
 
     public void SetTargetObject(Transform targetObject, Vector3 followOffset)
     {
@@ -112,6 +113,8 @@ public class TargetSwitcher : MonoBehaviour
         virtualCameraTransposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         SetTargetObject(npcObject, followOffset);
         SetTarget(null);
+
+        compass.SetCameraTransform(normalCamera.transform);
     }
 
     private void LateUpdate()

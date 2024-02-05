@@ -25,10 +25,12 @@ public class DangerIteration4 : BaseDanger
 
     public void Switch_BadDish1()
     {
-        Transform firstObjectTransform = objects[1].transform;
-        Transform secondObjectTransform = objects[0].transform;
+        GameObject firstObject = objects[1];
+        GameObject secondObject = objects[0];
+        objects[1] = secondObject;
+        objects[0] = firstObject;
 
-        SwitchPositions(firstObjectTransform, secondObjectTransform);
+        SwitchPositions(firstObject.transform, secondObject.transform);
         counter++;
 
         if (counter >= 2)
@@ -39,10 +41,12 @@ public class DangerIteration4 : BaseDanger
 
     public void Switch_BadDish2()
     {
-        Transform firstObjectTransform = objects[2].transform;
-        Transform secondObjectTransform = objects[1].transform;
+        GameObject firstObject = objects[2];
+        GameObject secondObject = objects[1];
+        objects[2] = secondObject;
+        objects[1] = firstObject;
 
-        SwitchPositions(firstObjectTransform, secondObjectTransform);
+        SwitchPositions(firstObject.transform, secondObject.transform);
         counter++;
     }
 }
