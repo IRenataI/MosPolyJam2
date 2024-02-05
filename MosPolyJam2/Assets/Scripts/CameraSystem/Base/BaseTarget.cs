@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -13,6 +14,7 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
     [SerializeField] protected string successActivationAnimationName;
 
     [Header("UI")]
+    [TextArea] [SerializeField] protected string infoText;
     [SerializeField] protected GameObject infoUIPrefab;
     protected GameObject uiCanvas;
     protected GameObject infoUIInstance;
@@ -28,7 +30,6 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
 
     [Header("Refs")]
     [SerializeField] protected Transform targetObject;
-    [SerializeField] protected GameObject ActivationVFX;
     [SerializeField] protected float cameraHeight = 1f;
 
     protected Animator anim;
@@ -79,8 +80,10 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
             return;
 
         this.uiCanvas = uiCanvas;
+
         infoUIInstance = Instantiate(infoUIPrefab, this.uiCanvas.transform);
         infoUIInstance.SetActive(false);
+        infoUIInstance.GetComponentInChildren<TMP_Text>().text = infoText;
     }
 
     public void Select()
@@ -88,19 +91,12 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
         if (enabled)
             return;
 
-        // Debug.Log($"{this.name} selected");
-        if (infoUIInstance != null)
-            infoUIInstance.SetActive(true);
-
         ChangeShaderSettings(targetEmissiveness, targetOutlineOpacity);
     }
 
     public void Deselect()
     {
         // Debug.Log($"{this.name} deselected");
-        if (infoUIInstance != null)
-            infoUIInstance.SetActive(false);
-
         ChangeShaderSettings(defaultEmissiveness, defaultOutlineOpacity);
     }
 
@@ -113,6 +109,12 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
     public BaseTarget GetTarget()
     {
         return this;
+    }
+
+    public void EnableUI(bool value)
+    {
+        if (infoUIInstance != null)
+            infoUIInstance.SetActive(value);
     }
 
     public virtual void Activate(bool successActivation)

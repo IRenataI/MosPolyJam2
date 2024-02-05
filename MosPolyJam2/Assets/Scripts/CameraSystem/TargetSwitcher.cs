@@ -77,12 +77,14 @@ public class TargetSwitcher : MonoBehaviour
     {
         if (this.target != null)
         {
+            this.target.EnableUI(false);
             this.target.enabled = false;
         }
 
         this.target = target;
         if (target != null)
         {
+            this.target.EnableUI(true);
             target.enabled = true;
         }
     }
