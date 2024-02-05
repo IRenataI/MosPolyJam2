@@ -5,13 +5,12 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class FreeCamera : MonoBehaviour
 {
-    public Transform RotationCostylTransform { get; private set; }
-
     [SerializeField] private float speed = 5f;
     
     private CinemachineVirtualCamera cvCamera;
     private CinemachinePOV cameraPOV;
     private Rigidbody rb;
+    private Transform rotationCostylTransform;
 
     private void Start()
     {
@@ -20,7 +19,7 @@ public class FreeCamera : MonoBehaviour
 
         rb = GetComponent<Rigidbody>();
 
-        RotationCostylTransform = new GameObject("Rotation Costyl").transform;
+        rotationCostylTransform = new GameObject("Rotation Costyl").transform;
     }
 
     private void FixedUpdate()
@@ -34,7 +33,7 @@ public class FreeCamera : MonoBehaviour
     private void Move()
     {
         Vector3 rotation = new(cameraPOV.m_VerticalAxis.Value, cameraPOV.m_HorizontalAxis.Value, 0f);
-        RotationCostylTransform.eulerAngles = rotation;
+        rotationCostylTransform.eulerAngles = rotation;
 
         float x = Input.GetAxis("Vertical");
         float z = Input.GetAxis("Horizontal");
@@ -45,7 +44,7 @@ public class FreeCamera : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftShift))
             y = -1f;
 
-        rb.AddForce(speed * (x * RotationCostylTransform.forward + y * RotationCostylTransform.up + z * RotationCostylTransform.right));
+        rb.AddForce(speed * (x * rotationCostylTransform.forward + y * rotationCostylTransform.up + z * rotationCostylTransform.right));
 
         // transform.position +=   speed * Time.deltaTime *
         //                         (x * rotationCostylTransform.forward +

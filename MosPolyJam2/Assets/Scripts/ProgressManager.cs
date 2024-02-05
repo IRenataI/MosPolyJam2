@@ -47,7 +47,8 @@ public class ProgressManager : MonoBehaviour
         currentDanger = progressPoints[targetProgressPoint].dangerAction;
         if (currentDanger != null)
         {
-            npc.StartToFreeze(currentDanger.NPCAnimationName, currentDanger, dangerTimerView, targetSwitcher);
+            if (!string.IsNullOrEmpty(currentDanger.NPCAnimationName))
+                npc.StartToFreeze(currentDanger.NPCAnimationName, currentDanger, dangerTimerView, targetSwitcher);
 
             currentDanger.OnComplete.AddListener(OnDangerCompleted);
             //currentDanger.Init(dangerTimerView);
