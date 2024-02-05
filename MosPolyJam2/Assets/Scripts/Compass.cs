@@ -10,9 +10,8 @@ public class Compass : MonoBehaviour
         Vector3 newEulerRotation = cameraTransform.eulerAngles;
 
         newEulerRotation.x = newEulerRotation.z = 0f;
-        newEulerRotation.y -= 180f;
 
-        arrowTransform.eulerAngles = newEulerRotation;
+        arrowTransform.localEulerAngles = newEulerRotation;
     }
 
     public void SetCameraTransform(Transform cameraTransform)
