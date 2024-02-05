@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,9 +8,21 @@ public class ProgressManager : MonoBehaviour
 
     [SerializeField] private bool activateOnStart = true;
     [SerializeField] private ProgressPoint[] progressPoints;
+
     [Header("Refs")]
     [SerializeField] private NonPlayableCharacter npc;
+    private NPCHealthSystem npcHealthSystem;
     [SerializeField] private TargetSwitcher targetSwitcher;
+
+    [Header("Danger Timer")]
+    [SerializeField] private TimerView dangerTimerView;
+
+    [Header("UI")]
+    [SerializeField] private GameObject aim;
+    [SerializeField] private GameObject endGameCanvas;
+    [SerializeField] private TextMeshProUGUI endGameLabel;
+    [SerializeField] private string winText;
+    [SerializeField] private string failureText;
 
     private int targetProgressPoint;
     private BaseDanger currentDanger;
@@ -18,6 +31,13 @@ public class ProgressManager : MonoBehaviour
     {
         if (activateOnStart)
             StartLevel();
+
+        aim.SetActive(true);
+        endGameCanvas.SetActive(false);
+        dangerTimerView.gameObject.SetActive(false);
+
+        npcHealthSystem = npc.GetComponent<NPCHealthSystem>();
+        npcHealthSystem.Died.AddListener(() => FinishLevel(false));
     }
 
     private void OnPointReached()
@@ -30,7 +50,8 @@ public class ProgressManager : MonoBehaviour
             npc.StartToFreeze(currentDanger.AnimationName);
 
             currentDanger.OnComplete.AddListener(OnDangerCompleted);
-            currentDanger.Init(); 
+            currentDanger.Init(dangerTimerView);
+            dangerTimerView.gameObject.SetActive(true);
 
             targetSwitcher.IsEnabled = true;
 
@@ -40,13 +61,24 @@ public class ProgressManager : MonoBehaviour
         MoveToNextProgressPoint();
     }
 
-    private void OnDangerCompleted()
+    private void OnDangerCompleted(bool isSuccess)
     {
         currentDanger.OnComplete.RemoveListener(OnDangerCompleted);
-        npc.Unfreeze();
-        targetSwitcher.IsEnabled = false;
+        dangerTimerView.gameObject.SetActive(false);
 
-        targetSwitcher.SetTargetObject(npc.transform, null, targetSwitcher.NPCFollowOffset);
+        if (isSuccess)
+        {
+
+        }
+        else
+        {
+            npcHealthSystem.TakeDamage();
+        }
+
+        npc.Unfreeze();
+
+        targetSwitcher.CurrentCameraState = CameraStates.Spectator;
+        targetSwitcher.IsEnabled = false;
 
         currentDanger = null;
     }
@@ -61,15 +93,32 @@ public class ProgressManager : MonoBehaviour
         }
         else
         {
-            FinishLevel();
+            FinishLevel(true);
         }
     }
 
-    private void FinishLevel()
+    private void FinishLevel(bool isSuccess)
     {
         StopLevel();
         npc.StopMovingWhenPointReached = true;
         npc.PointReached.RemoveListener(OnPointReached);
+
+        Transform lookAt = new GameObject("Look At Empty").transform;
+        lookAt.position = npc.transform.position + 1.5f * Vector3.up;
+        targetSwitcher.LookAt_EndGame(lookAt);
+
+        aim.SetActive(false);
+        endGameCanvas.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+
+        if (isSuccess)
+        {
+            endGameLabel.text = winText;
+        }
+        else
+        {
+            endGameLabel.text = failureText;
+        }
 
         OnComplete?.Invoke();
     }

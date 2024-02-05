@@ -1,12 +1,13 @@
+using TMPro;
 using UnityEngine;
 
 public class TestDanger : BaseDanger
 {
-    public override void Init()
+    public override void Init(TimerView dangerTimerView)
     {
-        base.Init();
+        base.Init(dangerTimerView);
 
-        timer.StartTimer(dangerTimer, () => Complete(), true);
+        timer.StartTimer(dangerTime, () => Fail(), true);
 
         Debug.Log("Danger init");
     }

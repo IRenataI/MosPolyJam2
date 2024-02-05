@@ -11,6 +11,9 @@ public class TestTarget : BaseTarget
 
     private void Update()
     {
+        if (!IsEnabled)
+            return;
+
         if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.E))
         {
             Activate();

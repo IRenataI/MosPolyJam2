@@ -4,43 +4,50 @@ using UnityEngine.UI;
 
 public class TargetSwitcher : MonoBehaviour
 {
-    public bool IsEnabled
+    public bool IsEnabled { get; set; }
+
+    public CameraStates CurrentCameraState
     {
-        get { return isEnabled; }
+        get { return currentCameraState; }
         set
         {
-            if (value == isEnabled)
+            if (currentCameraState == value)
                 return;
 
-            isEnabled = value;
-            if (isEnabled)
+            currentCameraState = value;
+
+            if (currentCameraState == CameraStates.Virtual)
             {
+                virtualCamera.LookAt = npcObject;
+
                 virtualCamera.enabled = true;
-                spectatorCamera.Priority = 10;
-                virtualCamera.Priority = 20;
                 spectatorCamera.enabled = false;
             }
-            else
+            else if(currentCameraState == CameraStates.Spectator)
             {
                 spectatorCamera.transform.position = virtualCamera.transform.position;
 
+                spectatorCamera.LookAt = null;
+
                 spectatorCamera.enabled = true;
-                virtualCamera.Priority = 10;
-                spectatorCamera.Priority = 20;
                 virtualCamera.enabled = false;
+
+                SetTarget(null);
             }
         }
     }
-    private bool isEnabled;
+    private CameraStates currentCameraState = CameraStates.Spectator;
 
     public Vector3 NPCFollowOffset => followOffset;
 
     [Header("Cameras")]
     [SerializeField] private Camera normalCamera;
+    [Space(10)]
     [SerializeField] private CinemachineVirtualCamera virtualCamera;
     [SerializeField] private Vector3 followOffset = new(0f, 2.5f, 0f);
     [Space(10)]
     [SerializeField] private CinemachineVirtualCamera spectatorCamera;
+
     private Vector3 screenCenter = new(Screen.width / 2f, Screen.height / 2f, 0f);
     private CinemachineTransposer virtualCameraTransposer;
 
@@ -50,8 +57,6 @@ public class TargetSwitcher : MonoBehaviour
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
     [SerializeField] private float interactionTimer = 1.5f;
     private float timer = 0f;
-    [Space(5)]
-    [SerializeField] private KeyCode backKey = KeyCode.Escape;
 
     private IInteractable currentInteractable;
     private BaseTarget target;
@@ -60,14 +65,42 @@ public class TargetSwitcher : MonoBehaviour
     [SerializeField] private Transform npcObject;
     [SerializeField] private Image timerImage;
 
-    public void SetTargetObject(Transform targetObject, BaseTarget target, Vector3 followOffset)
+    public void SetTargetObject(Transform targetObject, Vector3 followOffset)
     {
         virtualCamera.Follow = targetObject;
         virtualCamera.LookAt = targetObject;
 
         virtualCameraTransposer.m_FollowOffset = followOffset;
+    }
+
+    public void SetTarget(BaseTarget target)
+    {
+        if (this.target != null)
+        {
+            this.target.IsEnabled = false;
+        }
 
         this.target = target;
+        if (target != null)
+        {
+            target.IsEnabled = true;
+        }
+    }
+
+    public void LookAt_EndGame(Transform targetTransform)
+    {
+        if (CurrentCameraState == CameraStates.Virtual)
+        {
+            virtualCamera.LookAt = targetTransform;
+            virtualCamera.DestroyCinemachineComponent<CinemachinePOV>();
+            CinemachineHardLookAt hardLookAt = virtualCamera.AddCinemachineComponent<CinemachineHardLookAt>();            
+        }
+        else if (CurrentCameraState == CameraStates.Spectator)
+        {
+            spectatorCamera.LookAt = targetTransform;
+            spectatorCamera.DestroyCinemachineComponent<CinemachinePOV>();
+            CinemachineHardLookAt hardLookAt = spectatorCamera.AddCinemachineComponent<CinemachineHardLookAt>();
+        }
     }
 
     private void Start()
@@ -75,7 +108,8 @@ public class TargetSwitcher : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         virtualCameraTransposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
-        SetTargetObject(npcObject, null, followOffset);
+        SetTargetObject(npcObject, followOffset);
+        SetTarget(null);
     }
 
     private void LateUpdate()
@@ -85,12 +119,6 @@ public class TargetSwitcher : MonoBehaviour
 
         SearchInteractable();
         InteractTarget();
-        ActivateTarget();
-
-        if (Input.GetKeyDown(backKey))
-        {
-            SetTargetObject(npcObject, null, followOffset);
-        }
     }
 
     private void SearchInteractable()
@@ -108,13 +136,20 @@ public class TargetSwitcher : MonoBehaviour
     {
         if (currentInteractable == null || Input.GetKey(interactionKey) != true)
         {
+            timer = 0f;
+            timerImage.fillAmount = 0f;
+            //currentInteractable = null;
             //ClearInteraction(); // every frame calls deselect() -> select() -> deselect() -> ...
             return;
         }
 
+        if (currentInteractable.GetTarget().IsEnabled)
+            return;
+
         if (timer >= interactionTimer)
         {
             currentInteractable.Interact(this);
+            CurrentCameraState = CameraStates.Virtual;
 
             ClearInteraction();
         }
@@ -123,14 +158,6 @@ public class TargetSwitcher : MonoBehaviour
             timer += Time.deltaTime;
             timerImage.fillAmount = timer / interactionTimer;
         }
-    }
-
-    private void ActivateTarget()
-    {
-        if (target == null || Input.GetKeyDown(target.activationKey) != true || target.IsActiveted)
-            return;
-
-        target.Activate();
     }
 
     private void ClearInteraction()
@@ -166,3 +193,6 @@ public class TargetSwitcher : MonoBehaviour
         return output;
     }
 }
+
+[System.Serializable]
+public enum CameraStates { Spectator, Virtual };

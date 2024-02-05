@@ -48,8 +48,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activationKey: 113
+  objectRenderer: {fileID: 6907370367984314175}
+  defaultEmissiveness: 1
+  defaultOutlineOpacity: 1
+  targetEmissiveness: 1.2
+  targetOutlineOpacity: 0
   targetObject: {fileID: 3623360456086345916}
   ActivationVFX: {fileID: 1892078723244562, guid: 46876a2780737ec45a19d62f88e5ce56, type: 3}
+  cameraHeight: 1
 --- !u!136 &2558935395164413094
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -155,7 +161,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a4b62a69d54e80347bd546999c6d4b9e, type: 2}
+  - {fileID: 2100000, guid: 33a8b5b12f439e149912ae3892e97127, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

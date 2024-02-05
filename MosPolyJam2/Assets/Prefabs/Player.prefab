@@ -288,6 +288,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1974120647652870004}
+  - component: {fileID: 6254959460868805308}
+  - component: {fileID: 8833071847865002514}
   - component: {fileID: 1141284746537488764}
   - component: {fileID: 5538925400370263665}
   m_Layer: 0
@@ -313,6 +315,54 @@ Transform:
   - {fileID: 5308994570136360342}
   m_Father: {fileID: 692607169180475643}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &6254959460868805308
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163473505628797209}
+  m_Material: {fileID: 13400000, guid: 423c2e1f626808c4eaac2cd618f2e90e, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.15
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &8833071847865002514
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4163473505628797209}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 10
+  m_AngularDrag: 100
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 1
 --- !u!114 &1141284746537488764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,7 +414,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9901af1433f24c4cb44bf1034628d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 30
 --- !u!1 &5813682374972774443
 GameObject:
   m_ObjectHideFlags: 0
@@ -405,7 +455,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5813682374972774443}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
@@ -617,7 +667,13 @@ MonoBehaviour:
   normalCamera: {fileID: 8107031089309802251}
   virtualCamera: {fileID: 6055608756890951806}
   followOffset: {x: 0, y: 2.5, z: 0}
+  virtualCameraVolumeMask:
+    serializedVersion: 2
+    m_Bits: 1
   spectatorCamera: {fileID: 1141284746537488764}
+  spectatorCameraVolumeMask:
+    serializedVersion: 2
+    m_Bits: 64
   interactionMaxDistance: 100
   interactionKey: 101
   interactionTimer: 1
