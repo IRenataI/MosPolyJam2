@@ -1505,10 +1505,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3167103605289737347, guid: 3684528c4e645ae4c80b77188f7dee51, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 31bf793ce87675c4e853d705390e52f2, type: 2}
     - target: {fileID: 4763387378934888470, guid: 3684528c4e645ae4c80b77188f7dee51, type: 3}
       propertyPath: healthParent
       value: 
@@ -1608,6 +1604,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 224178202387731012, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2134068845128528554, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1664,13 +1664,14 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4121353019709461886, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8117044580325195331, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1339710336}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
 --- !u!224 &1339710331 stripped
 RectTransform:
@@ -1688,35 +1689,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1339710333 stripped
+--- !u!114 &1339710338 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5903622893658786724, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8130395926723661521, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
   m_PrefabInstance: {fileID: 1339710330}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &1339710334 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8117044580325195331, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
-  m_PrefabInstance: {fileID: 1339710330}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1339710336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339710334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87245dd9ba8698441a3d1be2ea04b458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeLabel: {fileID: 1339710333}
 --- !u!1001 &1477854003
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1933,7 +1916,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationName: Tripping
-  dangerTime: 10
+  dangerTime: 2.5
   uiPrefab: {fileID: 4367937600615885901, guid: effb78cb7a1faeb478ebbe73e8a5a697, type: 3}
   completeTargets:
   - {fileID: 1923162474}
@@ -2097,7 +2080,7 @@ MonoBehaviour:
         m_Calls: []
   npc: {fileID: 1320531466}
   targetSwitcher: {fileID: 317478743}
-  dangerTimerView: {fileID: 1339710336}
+  dangerTimerView: {fileID: 1339710338}
   progressPointsTransformsEditor:
   - {fileID: 1498487902}
   - {fileID: 1833623095}
