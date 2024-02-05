@@ -11,11 +11,11 @@ public class ProgressManager : MonoBehaviour
 
     [Header("Refs")]
     [SerializeField] private NonPlayableCharacter npc;
+    private NPCHealthSystem npcHealthSystem;
     [SerializeField] private TargetSwitcher targetSwitcher;
 
     [Header("Danger Timer")]
-    [SerializeField] private GameObject dangerTimer;
-    [SerializeField] private TextMeshProUGUI dangerTimerLabel;
+    [SerializeField] private TimerView dangerTimerView;
 
     private int targetProgressPoint;
     private BaseDanger currentDanger;
@@ -25,7 +25,8 @@ public class ProgressManager : MonoBehaviour
         if (activateOnStart)
             StartLevel();
 
-        dangerTimer.SetActive(false);
+        dangerTimerView.gameObject.SetActive(false);
+        npcHealthSystem = npc.GetComponent<NPCHealthSystem>();
     }
 
     private void OnPointReached()
@@ -38,8 +39,8 @@ public class ProgressManager : MonoBehaviour
             npc.StartToFreeze(currentDanger.AnimationName);
 
             currentDanger.OnComplete.AddListener(OnDangerCompleted);
-            currentDanger.Init(dangerTimerLabel);
-            dangerTimer.SetActive(true);
+            currentDanger.Init(dangerTimerView);
+            dangerTimerView.gameObject.SetActive(true);
 
             targetSwitcher.IsEnabled = true;
 
@@ -49,9 +50,19 @@ public class ProgressManager : MonoBehaviour
         MoveToNextProgressPoint();
     }
 
-    private void OnDangerCompleted()
+    private void OnDangerCompleted(bool isSuccess)
     {
         currentDanger.OnComplete.RemoveListener(OnDangerCompleted);
+
+        if (isSuccess)
+        {
+
+        }
+        else
+        {
+            npcHealthSystem.TakeDamage();
+        }
+
         npc.Unfreeze();
 
         targetSwitcher.CurrentCameraState = CameraStates.Spectator;

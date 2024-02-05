@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class TestDanger : BaseDanger
 {
-    public override void Init(TextMeshProUGUI dangerTimerLabel)
+    public override void Init(TimerView dangerTimerView)
     {
-        base.Init(dangerTimerLabel);
+        base.Init(dangerTimerView);
 
-        timer.StartTimer(dangerTime, () => Complete(), true);
+        timer.StartTimer(dangerTime, () => Fail(), true);
 
         Debug.Log("Danger init");
     }

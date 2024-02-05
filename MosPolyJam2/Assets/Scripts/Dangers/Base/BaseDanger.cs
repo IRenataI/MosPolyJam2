@@ -5,7 +5,7 @@ using UnityEngine.Events;
 public abstract class BaseDanger : MonoBehaviour
 {
     public bool IsCompleted { get; private set; }
-    public UnityEvent OnComplete { get; private set; } = new();
+    public UnityEvent<bool> OnComplete { get; private set; } = new();
 
     public string AnimationName => animationName;
 
@@ -17,7 +17,7 @@ public abstract class BaseDanger : MonoBehaviour
     [SerializeField] private BaseTarget[] failTargets;
     [SerializeField] private BaseTarget[] nonImpactTargets;
 
-    protected TextMeshProUGUI dangerTimerLabel;
+    protected TimerView dangerTimerView;
     protected GameObject uiPanel;
 
     protected Timer timer;
@@ -25,14 +25,50 @@ public abstract class BaseDanger : MonoBehaviour
     protected void InitTargets()
     {
         foreach (BaseTarget target in completeTargets)
-            target.OnActivate.AddListener(Complete);
+            target.OnActivate.AddListener(Success);
         foreach (BaseTarget target in failTargets)
             target.OnActivate.AddListener(Fail);
     }
 
-    public virtual void Init(TextMeshProUGUI dangerTimerLabel)
+    protected virtual void Complete()
     {
-        this.dangerTimerLabel = dangerTimerLabel;
+        IsCompleted = true;
+
+        if (uiPanel != null)
+            Destroy(uiPanel);
+    }
+
+    protected virtual void Success()
+    {
+        if (IsCompleted)
+            return;
+
+        Debug.Log("Complete");
+
+        Complete();
+        OnComplete?.Invoke(true);
+    }
+
+    protected virtual void Fail()
+    {
+        if (IsCompleted)
+            return;
+
+        Debug.Log("Fail");
+
+        Complete();
+        OnComplete?.Invoke(false);
+    }
+
+    public virtual void Init(TimerView dangerTimerView)
+    {
+        if (IsCompleted)
+        {
+            Debug.LogWarning("The danger is already over");
+            return;
+        }
+
+        this.dangerTimerView = dangerTimerView;
 
         if (uiPrefab != null)
             uiPanel = Instantiate(uiPrefab);
@@ -43,29 +79,9 @@ public abstract class BaseDanger : MonoBehaviour
         InitTargets();
     }
 
-    public virtual void Complete()
-    {
-        if (IsCompleted)
-            return;
-
-        Debug.Log("Complete");
-
-        if (uiPanel != null)
-            Destroy(uiPanel);
-
-        IsCompleted = true;
-
-        OnComplete?.Invoke();
-    }
-
-    public virtual void Fail()
-    {
-        Debug.Log("Fail");
-    }
-
     public virtual void OnTimerTick(float remainingTime)
     {
-        if (dangerTimerLabel != null)
-            dangerTimerLabel.text = ((int)remainingTime).ToString();
+        if (dangerTimerView != null)
+            dangerTimerView.SetTime(remainingTime);
     }
 }
