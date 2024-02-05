@@ -85,6 +85,10 @@ public class NonPlayableCharacter : MonoBehaviour
         lookAtCoroutine = StartCoroutine(LookAt(targetPosition, rotationTime));
 
         animator.SetTrigger("Move");
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySound("Walk");
+        }
     }
 
     [ContextMenu("Stop Move")]
@@ -93,11 +97,20 @@ public class NonPlayableCharacter : MonoBehaviour
         isMoving = false;
 
         animator.SetTrigger("Idle");
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopSound("Walk");
+        }
     }
 
     public void StartToFreeze(string animationName)
     {
         isMoving = false;
+        if (AudioManager.Instance != null)
+        {
+            //playSound
+            AudioManager.Instance.StopSound("Walk");
+        }
 
         animator.Play(animationName);
     }

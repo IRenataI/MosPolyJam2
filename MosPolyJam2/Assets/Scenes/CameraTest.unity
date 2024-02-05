@@ -183,6 +183,10 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4763387378934888470, guid: 3684528c4e645ae4c80b77188f7dee51, type: 3}
+      propertyPath: healthParent
+      value: 
+      objectReference: {fileID: 766222365}
     - target: {fileID: 8087405932025804342, guid: 3684528c4e645ae4c80b77188f7dee51, type: 3}
       propertyPath: progressManager
       value: 
@@ -335,10 +339,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationName: Tripping
-  dangerTimer: 30
+  dangerTime: 0
   uiPrefab: {fileID: 4367937600615885901, guid: effb78cb7a1faeb478ebbe73e8a5a697, type: 3}
   completeTargets: []
   failTargets: []
+  nonImpactTargets: []
 --- !u!4 &652091155
 Transform:
   m_ObjectHideFlags: 0
@@ -465,6 +470,67 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 869847265}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &920242762
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4855795134546627108, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_Name
+      value: AudioManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627110, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4855795134546627111, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
+      propertyPath: soundsRefsSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 386b562a0e847fa4a9f50c45278123fc, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: adb97422b6160ba4aa3e63f8a30ff461, type: 3}
 --- !u!1 &992190649
 GameObject:
   m_ObjectHideFlags: 0
@@ -662,6 +728,7 @@ MonoBehaviour:
         m_Calls: []
   npc: {fileID: 64754981}
   targetSwitcher: {fileID: 2055069214}
+  dangerTimerView: {fileID: 0}
   progressPointsTransformsEditor:
   - {fileID: 1525439915}
   - {fileID: 600723390}
@@ -1178,3 +1245,4 @@ SceneRoots:
   - {fileID: 1651192782}
   - {fileID: 1075568869}
   - {fileID: 652091155}
+  - {fileID: 920242762}

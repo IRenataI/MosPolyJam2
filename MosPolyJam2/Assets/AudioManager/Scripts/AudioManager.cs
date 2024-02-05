@@ -28,6 +28,7 @@ public class AudioManager : MonoBehaviour
             sound.source = gameObject.AddComponent<AudioSource>();
             sound.source.clip = sound.clip;
             sound.source.volume = sound.volume;
+            sound.source.loop = sound.isLooped;
             sound.source.outputAudioMixerGroup = sound.mixerGroup;
         }
     }
