@@ -16,6 +16,8 @@ public class DialogueManager : MonoBehaviour
         public UnityEvent OnDialogueEnded;
     }
 
+    public static DialogueManager Instance { get; private set; }
+
     [SerializeField] private TMP_Text messageText;
 
     private Dialogue currentDialogue;
@@ -24,17 +26,31 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private bool initialStart;
     [SerializeField] private List<Dialogue> dialogueList = new List<Dialogue>();
 
+    public UnityEvent OnDialogueEnded { get; private set; }
+
     private bool isTyping;
     private AudioSource source;
 
+    private void Awake()
+    {
+        Instance = this;
+
+        source = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
-        source = GetComponent<AudioSource>();
+        LockCursor(true);
 
         if (initialStart)
         {
             StartDialogue(0);
         }
+    }
+
+    public void LockCursor(bool value)
+    {
+        Cursor.lockState = value ? CursorLockMode.Locked : CursorLockMode.None;
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -95,6 +111,7 @@ public class DialogueManager : MonoBehaviour
         source.Stop();
 
         isTyping = false;
+        SetNextPhrase();
     }
 
     private void EndDialogue()

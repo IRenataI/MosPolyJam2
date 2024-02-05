@@ -18,7 +18,7 @@ MonoBehaviour:
     volume: 1
     isLooped: 0
     mixerGroup: {fileID: -6618192482675976053, guid: 115a97aeb5f9d304b8470aa50a2bbcee, type: 2}
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 3f451adfc5e652a48aaa9bf595817d48, type: 3}
     source: {fileID: 0}
   - name: "\u041E\u0442\u043B\u0438\u0447\u043D\u043E! \u0427\u0442\u043E \u0436,
       \u043D\u0435 \u043C\u043E\u0436\u0435\u043C \u0436\u0435 \u043C\u044B \u0442\u0435\u0431\u044F
@@ -26,11 +26,11 @@ MonoBehaviour:
     volume: 1
     isLooped: 0
     mixerGroup: {fileID: -6618192482675976053, guid: 115a97aeb5f9d304b8470aa50a2bbcee, type: 2}
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 36b07d9f9cebc94469392b89fe2b8d5d, type: 3}
     source: {fileID: 0}
   - name: "\u0421\u0435\u0439\u0447\u0430\u0441 \u0432\u0441\u0435\u043C\u0443 \u043D\u0430\u0443\u0447\u0438\u043C!"
     volume: 1
     isLooped: 0
     mixerGroup: {fileID: -6618192482675976053, guid: 115a97aeb5f9d304b8470aa50a2bbcee, type: 2}
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 0bce39baca8ae3e4c8c3c78a62f7a459, type: 3}
     source: {fileID: 0}

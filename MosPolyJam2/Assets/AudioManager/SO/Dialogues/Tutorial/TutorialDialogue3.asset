@@ -20,5 +20,5 @@ MonoBehaviour:
     volume: 1
     isLooped: 0
     mixerGroup: {fileID: -6618192482675976053, guid: 115a97aeb5f9d304b8470aa50a2bbcee, type: 2}
-    clip: {fileID: 8300000, guid: 66c277cb368f6074c8dc7f8c27309218, type: 3}
+    clip: {fileID: 8300000, guid: 6285d8447bb5b3e4e8ccc3f08fbb1c75, type: 3}
     source: {fileID: 0}
