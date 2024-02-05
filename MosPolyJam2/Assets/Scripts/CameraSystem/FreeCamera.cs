@@ -2,6 +2,7 @@ using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(CinemachineVirtualCamera))]
+[RequireComponent(typeof(Rigidbody))]
 public class FreeCamera : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
@@ -9,16 +10,19 @@ public class FreeCamera : MonoBehaviour
     private CinemachineVirtualCamera cvCamera;
     private CinemachinePOV cameraPOV;
     private Transform rotationCostylTransform;
+    private Rigidbody rb;
 
     private void Start()
     {
         cvCamera = GetComponent<CinemachineVirtualCamera>();
         cameraPOV = cvCamera.GetCinemachineComponent<CinemachinePOV>();
 
+        rb = GetComponent<Rigidbody>();
+
         rotationCostylTransform = new GameObject("Rotation Costyl").transform;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (!cvCamera.enabled)
             return;
@@ -40,9 +44,11 @@ public class FreeCamera : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftShift))
             y = -1f;
 
-        transform.position +=   speed * Time.deltaTime *
-                                (x * rotationCostylTransform.forward +
-                                y * rotationCostylTransform.up +
-                                z * rotationCostylTransform.right);
+        rb.AddForce(speed * (x * rotationCostylTransform.forward + y * rotationCostylTransform.up + z * rotationCostylTransform.right));
+
+        // transform.position +=   speed * Time.deltaTime *
+        //                         (x * rotationCostylTransform.forward +
+        //                         y * rotationCostylTransform.up +
+        //                         z * rotationCostylTransform.right);
     }
 }

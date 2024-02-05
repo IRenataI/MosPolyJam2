@@ -6,6 +6,7 @@ public class Sound
 {
     public string name;
     public float volume;
+    public bool isLooped;
     public AudioMixerGroup mixerGroup;
     public AudioClip clip;
 

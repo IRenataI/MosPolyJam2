@@ -9,10 +9,13 @@ public class NonPlayableCharacter : MonoBehaviour
     [HideInInspector] public bool StopMovingWhenPointReached = true;
 
     [SerializeField, Range(0.1f, 5f)] private float movingSpeed = 5f;
+    [SerializeField] private float rotationTime = 1f;
 
     private Vector3 targetPosition;
     private bool isMoving;
     private Animator animator;
+
+    private Coroutine lookAtCoroutine;
 
     private void Awake()
     {
@@ -48,6 +51,23 @@ public class NonPlayableCharacter : MonoBehaviour
         transform.position += movingDistance * nonNormalizedDirection.normalized;
     }
 
+    private IEnumerator LookAt(Vector3 lookToPosition, float time)
+    {
+        Quaternion lookRotation = Quaternion.LookRotation(lookToPosition - transform.position, Vector3.up);
+        
+        if (time <= 0)
+        {
+            transform.rotation = lookRotation;
+            yield break;
+        }
+
+        for (float t = Time.deltaTime; t <= time; t += Time.deltaTime)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, t / time);
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     public void StartMove(Vector3 targetPosition)
     {
         this.targetPosition = targetPosition;
@@ -59,8 +79,16 @@ public class NonPlayableCharacter : MonoBehaviour
     public void ContinueMove()
     {
         isMoving = true;
-        transform.LookAt(targetPosition, Vector3.up);
+
+        if (lookAtCoroutine != null)
+            StopCoroutine(lookAtCoroutine);
+        lookAtCoroutine = StartCoroutine(LookAt(targetPosition, rotationTime));
+
         animator.SetTrigger("Move");
+        if(AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySound("Walk");
+        }
     }
 
     [ContextMenu("Stop Move")]
@@ -69,11 +97,20 @@ public class NonPlayableCharacter : MonoBehaviour
         isMoving = false;
 
         animator.SetTrigger("Idle");
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopSound("Walk");
+        }
     }
 
     public void StartToFreeze(string animationName)
     {
         isMoving = false;
+        if (AudioManager.Instance != null)
+        {
+            //playSound
+            AudioManager.Instance.StopSound("Walk");
+        }
 
         animator.Play(animationName);
     }
