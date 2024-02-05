@@ -59,8 +59,16 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
 
     public void Select()
     {
+        if (IsEnabled)
+            return;
+
         Debug.Log($"{this.name} selected");
         ChangeShaderSettings(targetEmissiveness, targetOutlineOpacity);
+    }
+
+    public BaseTarget GetTarget()
+    {
+        return this;
     }
 
     public virtual void Activate()
@@ -74,4 +82,6 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position + cameraHeight * Vector3.up, 0.05f);
     }
+
+    
 }

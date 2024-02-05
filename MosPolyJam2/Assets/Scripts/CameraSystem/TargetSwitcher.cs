@@ -123,6 +123,9 @@ public class TargetSwitcher : MonoBehaviour
             return;
         }
 
+        if (currentInteractable.GetTarget().IsEnabled)
+            return;
+
         if (timer >= interactionTimer)
         {
             currentInteractable.Interact(this);

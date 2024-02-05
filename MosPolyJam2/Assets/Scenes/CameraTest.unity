@@ -350,8 +350,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animationName: Tripping
-  dangerTime: 0
-  uiPrefab: {fileID: 4367937600615885901, guid: effb78cb7a1faeb478ebbe73e8a5a697, type: 3}
+  dangerTime: 30
+  uiPrefab: {fileID: 0}
   completeTargets: []
   failTargets: []
   nonImpactTargets: []
