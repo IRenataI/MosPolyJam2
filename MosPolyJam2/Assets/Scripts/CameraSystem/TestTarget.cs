@@ -6,7 +6,8 @@ public class TestTarget : BaseTarget
     {
         base.Activate();
 
-        Instantiate(ActivationVFX, this.transform);
+        if(ActivationVFX != null)
+            Instantiate(ActivationVFX, this.transform);
     }
 
     private void Update()

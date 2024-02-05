@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -10,7 +11,8 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
     public KeyCode activationKey;
 
     [Header("Outline Settings")]
-    private Material objectMaterial;
+    private Material[] objectMaterials;
+    private Material[] changedMaterials;
     [SerializeField] private float defaultEmissiveness = 1f;
     [SerializeField] private float defaultOutlineOpacity = 1f;
     [SerializeField] private float targetEmissiveness = 1.2f;
@@ -26,7 +28,7 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
     private void Start()
     {
         anim = GetComponent<Animator>();
-        objectMaterial = targetObject.GetComponent<Renderer>().sharedMaterial;
+        objectMaterials = targetObject.GetComponent<Renderer>().sharedMaterials;
 
         // set outline
         ChangeShaderSettings(defaultEmissiveness, defaultOutlineOpacity);
@@ -35,14 +37,27 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
 
     protected void ChangeShaderSettings(float _emissiveness, float _outlineOpacity)
     {
-        if(objectMaterial == null)
+        if(objectMaterials.Length <= 0)
         {
             Debug.LogWarning($"No material in base target {this.name}");
             return;
         }
 
-        objectMaterial.SetFloat("_Emissiveness", _emissiveness);
-        objectMaterial.SetFloat("_Outline_opacity", _outlineOpacity);
+        if(changedMaterials == null)
+        {
+            changedMaterials = new Material[objectMaterials.Length];
+            for (int i = 0; i < changedMaterials.Length; i++)
+            {
+                changedMaterials[i] = new Material(objectMaterials[i]);
+            }
+            targetObject.GetComponent<Renderer>().sharedMaterials = changedMaterials;
+        }
+
+        foreach(var mat in changedMaterials)
+        {
+            mat.SetFloat("_Emissiveness", _emissiveness);
+            mat.SetFloat("_Outline_opacity", _outlineOpacity);
+        }
     }
 
     public void Deselect()

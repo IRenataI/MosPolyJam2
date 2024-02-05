@@ -17,6 +17,9 @@ public class NonPlayableCharacter : MonoBehaviour
 
     private Coroutine lookAtCoroutine;
 
+    private BaseDanger currentDanger;
+    private TimerView timerView;
+
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -103,9 +106,16 @@ public class NonPlayableCharacter : MonoBehaviour
         }
     }
 
-    public void StartToFreeze(string animationName)
+    public void StartToFreeze(string animationName, BaseDanger danger, TimerView timer)
     {
         isMoving = false;
+
+        if(currentDanger == null)
+        {
+            currentDanger = danger;
+            timerView = timer;
+        }
+
         if (AudioManager.Instance != null)
         {
             //playSound
@@ -117,6 +127,13 @@ public class NonPlayableCharacter : MonoBehaviour
 
     public void Freeze()
     {
+        if(currentDanger != null)
+        {
+            currentDanger.Init(timerView);
+            timerView.gameObject.SetActive(true);
+
+            currentDanger = null;
+        }
         animator.speed = 0f;
     }
 
