@@ -7,16 +7,19 @@ public class MenuManager : MonoBehaviour
 {
     public VideoPlayer videoPlayer;
     public GameObject videoScreen;
+    public GameObject SounManager;
     public string nextSceneName;
 
     private void Start()
     {
+        SounManager.SetActive(true);
         videoPlayer.enabled = false;
         videoPlayer.loopPointReached += EndReached;
     }
 
     public void StartVideo()
     {
+        SounManager.SetActive(false);
         videoScreen.SetActive(true);
         videoPlayer.enabled = true;
         videoPlayer.Play();

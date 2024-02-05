@@ -148,7 +148,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 108218368}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 71faf635706013e49a693bc045e2b8b4, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: cecf80f6903213a40a645899529015fb, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}
@@ -221,18 +221,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 275615273}
-  m_LocalRotation: {x: -0, y: -0, z: 0.07427002, w: 0.99723816}
+  m_LocalRotation: {x: -0, y: -0, z: -0.023464227, w: 0.99972475}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1754611251}
   m_Father: {fileID: 327636456}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -2.689}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -454.5, y: -145}
-  m_SizeDelta: {x: 1339.8, y: 363.1}
+  m_AnchoredPosition: {x: -442, y: -127}
+  m_SizeDelta: {x: 1100.5, y: 449.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &275615275
 MonoBehaviour:
@@ -310,8 +310,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f7dc13f816e189f479066aeb2f2790d1, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -387,7 +387,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ab1701478303aca42b6c6c3acd733128, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7d6b91de5f46f4a4eb573f4769934137, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -599,8 +599,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 25.571228, y: 1.8526001}
+  m_SizeDelta: {x: 49.9342, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &549476922
 MonoBehaviour:
@@ -649,8 +649,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 182.5
-  m_fontSizeBase: 182.5
+  m_fontSize: 113.9
+  m_fontSizeBase: 113.9
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -861,7 +861,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 977eae5ec689c5243b3521d9342208bc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.51
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1063,6 +1063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 108218369}
   videoScreen: {fileID: 1954905508}
+  SounManager: {fileID: 976684776}
   nextSceneName: Tutorial
 --- !u!1 &1754611250
 GameObject:
@@ -1148,8 +1149,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 199.6
-  m_fontSizeBase: 199.6
+  m_fontSize: 134.2
+  m_fontSizeBase: 134.2
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1224,18 +1225,18 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1933952146}
-  m_LocalRotation: {x: -0, y: -0, z: 0.07427002, w: 0.99723816}
+  m_LocalRotation: {x: -0, y: -0, z: -0.036153525, w: 0.99934626}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 549476921}
   m_Father: {fileID: 327636456}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.519}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -4.144}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -502, y: 120}
-  m_SizeDelta: {x: 1339.8, y: 363.1}
+  m_AnchoredPosition: {x: -430, y: 164}
+  m_SizeDelta: {x: 1100.5, y: 449.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1933952148
 MonoBehaviour:
@@ -1313,8 +1314,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: f7dc13f816e189f479066aeb2f2790d1, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
