@@ -10,18 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 15fb80c184fb8294db451a4148e15553, type: 3}
-  m_Name: PlayerSounds
+  m_Name: TutorialDialogue4
   m_EditorClassIdentifier: 
   sounds:
-  - name: Walk
-    volume: 0.7
-    isLooped: 1
+  - name: "\u0425\u043E\u0442\u044F, \u0432 \u0435\u0433\u043E \u0441\u043B\u0443\u0447\u0430\u0435
+      \u043E\u0431 \u043A\u0430\u043D\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u043E\u043D\u043D\u0443\u044E
+      \u0448\u0430\u0445\u0442\u0443."
+    volume: 1
+    isLooped: 0
     mixerGroup: {fileID: -6618192482675976053, guid: 115a97aeb5f9d304b8470aa50a2bbcee, type: 2}
-    clip: {fileID: 8300000, guid: f8c14f2814b4b124a894a65c32c44987, type: 3}
-    source: {fileID: 0}
-  - name: Walk
-    volume: 0.7
-    isLooped: 1
-    mixerGroup: {fileID: -6618192482675976053, guid: 115a97aeb5f9d304b8470aa50a2bbcee, type: 2}
-    clip: {fileID: 8300000, guid: f8c14f2814b4b124a894a65c32c44987, type: 3}
+    clip: {fileID: 8300000, guid: 73ba0a29c76589a45b334dce0cb5256f, type: 3}
     source: {fileID: 0}
