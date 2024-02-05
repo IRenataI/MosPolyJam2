@@ -18,12 +18,16 @@ public class TargetSwitcher : MonoBehaviour
 
             if (currentCameraState == CameraStates.Virtual)
             {
+                virtualCamera.LookAt = npcObject;
+
                 virtualCamera.enabled = true;
                 spectatorCamera.enabled = false;
             }
             else if(currentCameraState == CameraStates.Spectator)
             {
                 spectatorCamera.transform.position = virtualCamera.transform.position;
+
+                spectatorCamera.LookAt = null;
 
                 spectatorCamera.enabled = true;
                 virtualCamera.enabled = false;
@@ -80,6 +84,22 @@ public class TargetSwitcher : MonoBehaviour
         if (target != null)
         {
             target.IsEnabled = true;
+        }
+    }
+
+    public void LookAt_EndGame(Transform targetTransform)
+    {
+        if (CurrentCameraState == CameraStates.Virtual)
+        {
+            virtualCamera.LookAt = targetTransform;
+            virtualCamera.DestroyCinemachineComponent<CinemachinePOV>();
+            CinemachineHardLookAt hardLookAt = virtualCamera.AddCinemachineComponent<CinemachineHardLookAt>();            
+        }
+        else if (CurrentCameraState == CameraStates.Spectator)
+        {
+            spectatorCamera.LookAt = targetTransform;
+            spectatorCamera.DestroyCinemachineComponent<CinemachinePOV>();
+            CinemachineHardLookAt hardLookAt = spectatorCamera.AddCinemachineComponent<CinemachineHardLookAt>();
         }
     }
 

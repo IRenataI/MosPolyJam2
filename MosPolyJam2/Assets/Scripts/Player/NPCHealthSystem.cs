@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class NPCHealthSystem : MonoBehaviour
 {
+    public UnityEvent Died { get; private set; } = new();
+
     [SerializeField] private int healthCount;
     [SerializeField] private GameObject healthIconPrefab;
     [SerializeField] private Transform healthParent;
@@ -22,11 +25,11 @@ public class NPCHealthSystem : MonoBehaviour
     {
         healthCount--;
 
-        Destroy(healthObjects[healthCount].gameObject);
+        Destroy(healthObjects[healthCount]);
 
         if(healthCount <= 0)
         {
-            // end game
+            Died?.Invoke();
         }
     }
 }

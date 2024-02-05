@@ -463,10 +463,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3256117700009409722, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
-      propertyPath: m_VolumeLayerMask.m_Bits
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4485368438568710879, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -809,6 +805,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a7281da06e8b86447a96b76a21026036, type: 3}
   m_PrefabInstance: {fileID: 789689363}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &951997326 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7577097417145611796, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
+  m_PrefabInstance: {fileID: 1339710330}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &991823120
 GameObject:
   m_ObjectHideFlags: 0
@@ -1266,6 +1273,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 3994980100067551390, guid: 49a762b08c707d84c8ccdc5e33a26bf6, type: 3}
   m_PrefabInstance: {fileID: 1254865720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1281716435 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1521982006414644269, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
+  m_PrefabInstance: {fileID: 1339710330}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1286496506
 GameObject:
@@ -2081,6 +2093,13 @@ MonoBehaviour:
   npc: {fileID: 1320531466}
   targetSwitcher: {fileID: 317478743}
   dangerTimerView: {fileID: 1339710338}
+  aim: {fileID: 1281716435}
+  endGameCanvas: {fileID: 1774321109}
+  endGameLabel: {fileID: 951997326}
+  winText: "\u0422\u044B \u0441\u043F\u0440\u0430\u0432\u0438\u043B\u0441\u044F!
+    \u041C\u043E\u0436\u0435\u0448\u044C \u0432\u043E\u0437\u0432\u0440\u0430\u0449\u0430\u0442\u044C\u0441\u044F"
+  failureText: "\u041C\u043E\u0436\u0435\u0442 \u0441\u043B\u0435\u0434\u0443\u044E\u0449\u0435\u0433\u043E
+    \u0442\u044B \u0441\u043F\u0430\u0441\u0451\u0448\u044C..."
   progressPointsTransformsEditor:
   - {fileID: 1498487902}
   - {fileID: 1833623095}
@@ -2113,6 +2132,11 @@ Transform:
   - {fileID: 109075946}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1774321109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7056586070360928535, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
+  m_PrefabInstance: {fileID: 1339710330}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1833623094
 GameObject:
   m_ObjectHideFlags: 0
