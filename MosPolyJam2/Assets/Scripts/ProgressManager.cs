@@ -17,6 +17,9 @@ public class ProgressManager : MonoBehaviour
     [Header("Danger Timer")]
     [SerializeField] private TimerView dangerTimerView;
 
+    [Header("UI")]
+    [SerializeField] private GameObject aim;
+
     private int targetProgressPoint;
     private BaseDanger currentDanger;
 

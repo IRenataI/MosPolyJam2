@@ -10,7 +10,7 @@ public abstract class BaseDanger : MonoBehaviour
     public string AnimationName => animationName;
 
     [SerializeField] protected string animationName;
-    [SerializeField] protected float dangerTime;
+    [SerializeField, Min(2.5f)] protected float dangerTime = 2.5f;
     [SerializeField] protected GameObject uiPrefab;
 
     [SerializeField] private BaseTarget[] completeTargets;
