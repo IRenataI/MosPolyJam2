@@ -33,6 +33,7 @@ public class Timer : MonoBehaviour
 
         isStopped = true;
         expired?.Invoke();
+        expired = null;
 
         if (destroyOnExpired)
             Destroy(this);
@@ -61,5 +62,11 @@ public class Timer : MonoBehaviour
     public void Stop()
     {
         isStopped = true;
+    }
+
+    public void Destroy()
+    {
+        Stop();
+        Destroy(this);
     }
 }

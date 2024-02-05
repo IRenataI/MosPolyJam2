@@ -19,6 +19,7 @@ public class NonPlayableCharacter : MonoBehaviour
 
     private BaseDanger currentDanger;
     private TimerView timerView;
+    private TargetSwitcher targetSwitcher;
 
     private void Awake()
     {
@@ -106,7 +107,7 @@ public class NonPlayableCharacter : MonoBehaviour
         }
     }
 
-    public void StartToFreeze(string animationName, BaseDanger danger, TimerView timer)
+    public void StartToFreeze(string animationName, BaseDanger danger, TimerView timer, TargetSwitcher targetSwitcher)
     {
         isMoving = false;
 
@@ -114,6 +115,7 @@ public class NonPlayableCharacter : MonoBehaviour
         {
             currentDanger = danger;
             timerView = timer;
+            this.targetSwitcher = targetSwitcher;
         }
 
         if (AudioManager.Instance != null)
@@ -131,6 +133,7 @@ public class NonPlayableCharacter : MonoBehaviour
         {
             currentDanger.Init(timerView);
             timerView.gameObject.SetActive(true);
+            targetSwitcher.IsEnabled = true;
 
             currentDanger = null;
         }

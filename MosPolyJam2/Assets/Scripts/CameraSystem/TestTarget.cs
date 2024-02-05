@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class TestTarget : BaseTarget
 {
-    public override void Activate()
+    public override void Activate(bool successActivation)
     {
-        base.Activate();
+        base.Activate(true);
 
         if(ActivationVFX != null)
             Instantiate(ActivationVFX, this.transform);
@@ -12,12 +12,12 @@ public class TestTarget : BaseTarget
 
     private void Update()
     {
-        if (!IsEnabled)
+        if (!CanInteract)
             return;
 
         if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.E))
         {
-            Activate();
+            Activate(true);
         }
     }
 }

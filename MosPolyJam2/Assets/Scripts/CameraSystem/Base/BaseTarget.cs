@@ -1,23 +1,28 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
 public abstract class BaseTarget : MonoBehaviour, IInteractable
 {
-    public bool IsEnabled { get; set; } = false;
     public bool IsActivated { get; protected set; }
-    public UnityEvent OnActivate { get; private set; } = new();
 
     [Header("Activation")]
+    public UnityEvent OnActivate = new();
+
     [SerializeField] protected bool canBeReused;
     [SerializeField] protected Animator animator;
-    [SerializeField] protected string activationAnimationName;
-    
+    [SerializeField] protected string successActivationAnimationName;
+
+    [Header("UI")]
+    [SerializeField] protected GameObject infoUIPrefab;
+    protected GameObject uiCanvas;
+    protected GameObject infoUIInstance;
+
     [Header("Outline Settings")]
+    [SerializeField] private Renderer rend;
     private Material[] objectMaterials;
     private Material[] changedMaterials;
     [SerializeField] private float defaultEmissiveness = 1f;
-    [SerializeField] private float defaultOutlineOpacity = 1f;
+    [SerializeField] private float defaultOutlineOpacity = 0.5f;
     [SerializeField] private float targetEmissiveness = 1.2f;
     [SerializeField] private float targetOutlineOpacity = 0f;
 
@@ -27,15 +32,19 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
     [SerializeField] protected float cameraHeight = 1f;
 
     protected Animator anim;
+    protected bool CanInteract => !IsActivated || canBeReused; 
 
-    private void Start()
+    private void Awake()
     {
+        enabled = false;
         anim = GetComponent<Animator>();
-        objectMaterials = targetObject.GetComponent<Renderer>().sharedMaterials;
+        if (rend == null)
+            TryGetComponent<Renderer>(out rend);
+
+        objectMaterials = rend.sharedMaterials;
 
         // set outline
         ChangeShaderSettings(defaultEmissiveness, defaultOutlineOpacity);
-
     }
 
     protected void ChangeShaderSettings(float _emissiveness, float _outlineOpacity)
@@ -53,7 +62,8 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
             {
                 changedMaterials[i] = new Material(objectMaterials[i]);
             }
-            targetObject.GetComponent<Renderer>().sharedMaterials = changedMaterials;
+
+            rend.sharedMaterials = changedMaterials;
         }
 
         foreach(var mat in changedMaterials)
@@ -63,9 +73,34 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
         }
     }
 
+    public virtual void Init(GameObject uiCanvas)
+    {
+        if (uiCanvas == null || infoUIPrefab == null)
+            return;
+
+        this.uiCanvas = uiCanvas;
+        infoUIInstance = Instantiate(infoUIPrefab, this.uiCanvas.transform);
+        infoUIInstance.SetActive(false);
+    }
+
+    public void Select()
+    {
+        if (enabled)
+            return;
+
+        // Debug.Log($"{this.name} selected");
+        if (infoUIInstance != null)
+            infoUIInstance.SetActive(true);
+
+        ChangeShaderSettings(targetEmissiveness, targetOutlineOpacity);
+    }
+
     public void Deselect()
     {
-        Debug.Log($"{this.name} deselected");
+        // Debug.Log($"{this.name} deselected");
+        if (infoUIInstance != null)
+            infoUIInstance.SetActive(false);
+
         ChangeShaderSettings(defaultEmissiveness, defaultOutlineOpacity);
     }
 
@@ -75,31 +110,26 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
         switcher.SetTargetObject(targetObject != null ? targetObject : transform, cameraHeight * Vector3.up);
     }
 
-    public void Select()
-    {
-        if (IsEnabled)
-            return;
-
-        Debug.Log($"{this.name} selected");
-        ChangeShaderSettings(targetEmissiveness, targetOutlineOpacity);
-    }
-
     public BaseTarget GetTarget()
     {
         return this;
     }
 
-    public virtual void Activate()
+    public virtual void Activate(bool successActivation)
     {
-        if (!canBeReused && IsActivated)
+        if (!CanInteract)
             return;
 
-        if (!string.IsNullOrEmpty(activationAnimationName))
-            animator.Play(activationAnimationName);
-
+        Debug.Log($"{this.name} has been activated : {successActivation}");
         IsActivated = true;
-        OnActivate?.Invoke();
-        Debug.Log($"{this.name} has been activated");
+
+        if (successActivation)
+        {
+            if (!string.IsNullOrEmpty(successActivationAnimationName))
+                animator.Play(successActivationAnimationName);
+
+            OnActivate?.Invoke();
+        }
     }
 
     private void OnDrawGizmos()

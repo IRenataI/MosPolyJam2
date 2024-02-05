@@ -9,7 +9,7 @@ public class DangerIteration1 : BaseDanger
     {
         base.Init(dangerTimerView);
 
-        timer.StartTimer(dangerTime, () => Fail(), true);
+        timer.StartTimer(time, () => Fail(), true);
 
         startVFX.Play();
 

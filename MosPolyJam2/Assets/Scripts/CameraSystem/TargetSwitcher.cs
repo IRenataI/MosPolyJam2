@@ -77,13 +77,13 @@ public class TargetSwitcher : MonoBehaviour
     {
         if (this.target != null)
         {
-            this.target.IsEnabled = false;
+            this.target.enabled = false;
         }
 
         this.target = target;
         if (target != null)
         {
-            target.IsEnabled = true;
+            target.enabled = true;
         }
     }
 
@@ -143,7 +143,7 @@ public class TargetSwitcher : MonoBehaviour
             return;
         }
 
-        if (currentInteractable.GetTarget().IsEnabled)
+        if (currentInteractable.GetTarget().enabled)
             return;
 
         if (timer >= interactionTimer)

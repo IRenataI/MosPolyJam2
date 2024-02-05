@@ -11,15 +11,16 @@ public class KeyActivatingTarget : BaseTarget
 
     private void Update()
     {
-        if (!IsEnabled || !Input.GetKeyDown(activationKey))
+        if (!CanInteract || !Input.GetKeyDown(activationKey))
             return;
 
         pressCount++;
-        animator.Play(pressAnimationName);
+        if (!string.IsNullOrEmpty(pressAnimationName))
+            animator.Play(pressAnimationName);
 
         if (pressCount >= neededPressCount)
         {
-            Activate();
+            Activate(true);
         }
     }
 }
