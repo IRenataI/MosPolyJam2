@@ -71,15 +71,15 @@ public class TargetSwitcher : MonoBehaviour
 
     public void SetTarget(BaseTarget target)
     {
-        if(this.target != null)
+        if (this.target != null)
         {
             this.target.IsEnabled = false;
-            this.target = target;
-            this.target.IsEnabled = true;
         }
-        else
+
+        this.target = target;
+        if (target != null)
         {
-            this.target = target;
+            target.IsEnabled = true;
         }
     }
 
@@ -116,6 +116,9 @@ public class TargetSwitcher : MonoBehaviour
     {
         if (currentInteractable == null || Input.GetKey(interactionKey) != true)
         {
+            timer = 0f;
+            timerImage.fillAmount = 0f;
+            //currentInteractable = null;
             //ClearInteraction(); // every frame calls deselect() -> select() -> deselect() -> ...
             return;
         }

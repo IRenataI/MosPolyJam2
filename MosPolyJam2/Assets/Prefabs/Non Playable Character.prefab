@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StopMovingWhenPointReached: 1
   movingSpeed: 1.5
+  rotationTime: 1
 --- !u!136 &3831033121744574188
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: cdd117bb0e8b2bf4abf539a6b073eda4, type: 2}
+      objectReference: {fileID: 9100000, guid: 31bf793ce87675c4e853d705390e52f2, type: 2}
     - target: {fileID: 5866666021909216657, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0

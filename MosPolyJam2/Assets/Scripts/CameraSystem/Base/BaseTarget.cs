@@ -30,8 +30,8 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
 
     public void Interact(TargetSwitcher switcher)
     {
-        switcher.SetTargetObject(targetObject != null ? targetObject : transform, cameraHeight * Vector3.up);
         switcher.SetTarget(this);
+        switcher.SetTargetObject(targetObject != null ? targetObject : transform, cameraHeight * Vector3.up);
     }
 
     public void Select()
