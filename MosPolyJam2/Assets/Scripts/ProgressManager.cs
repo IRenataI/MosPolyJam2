@@ -53,6 +53,7 @@ public class ProgressManager : MonoBehaviour
     private void OnDangerCompleted(bool isSuccess)
     {
         currentDanger.OnComplete.RemoveListener(OnDangerCompleted);
+        dangerTimerView.gameObject.SetActive(false);
 
         if (isSuccess)
         {
