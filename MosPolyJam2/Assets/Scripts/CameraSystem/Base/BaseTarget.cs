@@ -9,6 +9,13 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
     [Header("Activation settings")]
     public KeyCode activationKey;
 
+    [Header("Outline Settings")]
+    private Material objectMaterial;
+    [SerializeField] private float defaultEmissiveness = 1f;
+    [SerializeField] private float defaultOutlineOpacity = 1f;
+    [SerializeField] private float targetEmissiveness = 1.2f;
+    [SerializeField] private float targetOutlineOpacity = 0f;
+
     [Header("Refs")]
     [SerializeField] protected Transform targetObject;
     [SerializeField] protected GameObject ActivationVFX;
@@ -19,13 +26,29 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
     private void Start()
     {
         anim = GetComponent<Animator>();
+        objectMaterial = targetObject.GetComponent<Renderer>().sharedMaterial;
+
         // set outline
+        ChangeShaderSettings(defaultEmissiveness, defaultOutlineOpacity);
+
+    }
+
+    protected void ChangeShaderSettings(float _emissiveness, float _outlineOpacity)
+    {
+        if(objectMaterial == null)
+        {
+            Debug.LogWarning($"No material in base target {this.name}");
+            return;
+        }
+
+        objectMaterial.SetFloat("_Emissiveness", _emissiveness);
+        objectMaterial.SetFloat("_Outline_opacity", _outlineOpacity);
     }
 
     public void Deselect()
     {
         Debug.Log($"{this.name} deselected");
-        // change outline
+        ChangeShaderSettings(defaultEmissiveness, defaultOutlineOpacity);
     }
 
     public void Interact(TargetSwitcher switcher)
@@ -37,7 +60,7 @@ public abstract class BaseTarget : MonoBehaviour, IInteractable
     public void Select()
     {
         Debug.Log($"{this.name} selected");
-        // change outline
+        ChangeShaderSettings(targetEmissiveness, targetOutlineOpacity);
     }
 
     public virtual void Activate()
