@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -7,12 +6,14 @@ public abstract class BaseDanger : MonoBehaviour
     public bool IsCompleted { get; private set; }
     public UnityEvent<bool> OnComplete { get; private set; } = new();
 
-    public string AnimationName => animationName;
+    public string NPCAnimationName => npcAnimationName;
 
-    [SerializeField] protected string animationName;
-    [SerializeField, Min(2.5f)] protected float dangerTime = 2.5f;
+    [SerializeField] protected string npcAnimationName;
+    [SerializeField, Min(2.5f)] protected float time = 30f;
     [SerializeField] protected GameObject uiPrefab;
 
+    [Header("Targets\nAdd target if it affects on danger or has user interface")]
+    [Space(5)]
     [SerializeField] private BaseTarget[] completeTargets;
     [SerializeField] private BaseTarget[] failTargets;
     [SerializeField] private BaseTarget[] nonImpactTargets;
@@ -25,14 +26,26 @@ public abstract class BaseDanger : MonoBehaviour
     protected void InitTargets()
     {
         foreach (BaseTarget target in completeTargets)
+        {
             target.OnActivate.AddListener(Success);
+            target.Init(uiPanel);
+        }
         foreach (BaseTarget target in failTargets)
+        {
             target.OnActivate.AddListener(Fail);
+            target.Init(uiPanel);
+        }
+        foreach (BaseTarget target in nonImpactTargets)
+        {
+            target.Init(uiPanel);
+        }
     }
 
     protected virtual void Complete()
     {
         IsCompleted = true;
+
+        timer.Destroy();
 
         if (uiPanel != null)
             Destroy(uiPanel);
@@ -68,6 +81,8 @@ public abstract class BaseDanger : MonoBehaviour
             return;
         }
 
+        Debug.Log("Danger init: " + name);
+
         this.dangerTimerView = dangerTimerView;
 
         if (uiPrefab != null)
@@ -75,6 +90,7 @@ public abstract class BaseDanger : MonoBehaviour
 
         timer = gameObject.AddComponent<Timer>();
         timer.TimeChanged.AddListener(OnTimerTick);
+        timer.StartTimer(time, () => Fail(), true);
 
         InitTargets();
     }

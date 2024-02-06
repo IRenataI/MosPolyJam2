@@ -625,7 +625,7 @@ MonoBehaviour:
   m_text: "\u041D\u0430\u0447\u0430\u0442\u044C \u0438\u0433\u0440\u0443"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
-  m_sharedMaterial: {fileID: -5567501833406925314, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
+  m_sharedMaterial: {fileID: 1275017868409801731, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -861,7 +861,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 977eae5ec689c5243b3521d9342208bc, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.51
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1125,7 +1125,7 @@ MonoBehaviour:
   m_text: "\u0412\u044B\u0445\u043E\u0434"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
-  m_sharedMaterial: {fileID: -5567501833406925314, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
+  m_sharedMaterial: {fileID: 1275017868409801731, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

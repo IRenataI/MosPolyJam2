@@ -2,21 +2,19 @@ using UnityEngine;
 
 public class TestTarget : BaseTarget
 {
-    public override void Activate()
+    public override void Activate(bool successActivation)
     {
-        base.Activate();
-
-        Instantiate(ActivationVFX, this.transform);
+        base.Activate(true);
     }
 
     private void Update()
     {
-        if (!IsEnabled)
+        if (!CanInteract)
             return;
 
         if (Input.GetKey(KeyCode.Q) && Input.GetKey(KeyCode.E))
         {
-            Activate();
+            Activate(true);
         }
     }
 }
