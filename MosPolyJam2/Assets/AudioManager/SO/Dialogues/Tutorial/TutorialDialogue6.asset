@@ -13,6 +13,12 @@ MonoBehaviour:
   m_Name: TutorialDialogue6
   m_EditorClassIdentifier: 
   sounds:
+  - name: "\u0442\u0430-\u0434\u0430\u043C!"
+    volume: 1
+    isLooped: 0
+    mixerGroup: {fileID: -6618192482675976053, guid: 115a97aeb5f9d304b8470aa50a2bbcee, type: 2}
+    clip: {fileID: 8300000, guid: 987db005e4e9ca340b717044289694ac, type: 3}
+    source: {fileID: 0}
   - name: "\u041E\u0445, \u043A\u0442\u043E \u0431\u044B \u043C\u043E\u0433 \u043F\u043E\u0434\u0443\u043C\u0430\u0442\u044C..."
     volume: 1
     isLooped: 0

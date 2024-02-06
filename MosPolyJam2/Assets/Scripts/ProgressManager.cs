@@ -30,7 +30,11 @@ public class ProgressManager : MonoBehaviour
     private void Start()
     {
         if (activateOnStart)
+        {
             StartLevel();
+            AudioManager.Instance.PlaySound("Music");
+        }
+            
 
         aim.SetActive(true);
         endGameCanvas.SetActive(false);

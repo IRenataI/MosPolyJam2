@@ -57,6 +57,7 @@ public abstract class BaseDanger : MonoBehaviour
             return;
 
         Debug.Log("Complete");
+        AudioManager.Instance.PlaySound("Complete");
 
         Complete();
         OnComplete?.Invoke(true);
@@ -68,6 +69,7 @@ public abstract class BaseDanger : MonoBehaviour
             return;
 
         Debug.Log("Fail");
+        AudioManager.Instance.PlaySound("Fail");
 
         Complete();
         OnComplete?.Invoke(false);
