@@ -6571,6 +6571,32 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2011924749}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &934945410 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2541861712657938949, guid: df4e543bc020ffa46bcd64ca0a1f6d1a, type: 3}
+  m_PrefabInstance: {fileID: 1421979211}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &934945414
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 934945410}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 966bb3ecb48095848ae83206d2b4c0b4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &938125986
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8473,7 +8499,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1184034548}
   m_Layer: 0
-  m_Name: Progress Point (21)
+  m_Name: Progress Point (22)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10186,6 +10212,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8585943591047799739, guid: 8f0474ffa8dcba343a3ddf14175eb2ed, type: 3}
+      propertyPath: m_Name
+      value: SM_QUEST_lobster (1)
+      objectReference: {fileID: 0}
     - target: {fileID: 8850362262392965671, guid: 8f0474ffa8dcba343a3ddf14175eb2ed, type: 3}
       propertyPath: m_Name
       value: Iteration6
@@ -10258,6 +10288,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 530629093084549377, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_VerticalAxis.Value
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 530629093084549377, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_HorizontalAxis.Value
+      value: 147.52
+      objectReference: {fileID: 0}
     - target: {fileID: 692607169180475643, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -10297,6 +10335,38 @@ PrefabInstance:
     - target: {fileID: 692607169180475643, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974120647652870004, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.673
+      objectReference: {fileID: 0}
+    - target: {fileID: 1974120647652870004, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.547
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485368438568710879, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.673
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485368438568710879, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.547
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485368438568710879, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.27541283
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485368438568710879, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.04856271
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485368438568710879, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.94551265
+      objectReference: {fileID: 0}
+    - target: {fileID: 4485368438568710879, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.1667194
       objectReference: {fileID: 0}
     - target: {fileID: 6055608756890951806, guid: df4f22dd15f50334ebc385be7b6f0c37, type: 3}
       propertyPath: m_Follow
@@ -10855,7 +10925,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2541861712657938949, guid: df4e543bc020ffa46bcd64ca0a1f6d1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 934945414}
   m_SourcePrefab: {fileID: 100100000, guid: df4e543bc020ffa46bcd64ca0a1f6d1a, type: 3}
 --- !u!4 &1421979212 stripped
 Transform:
@@ -12709,6 +12782,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8666308005192958493, guid: 59e034f358a5df74bb51a754a3e6c1c6, type: 3}
   m_PrefabInstance: {fileID: 1618034435}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1644437117
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1644437118}
+  m_Layer: 0
+  m_Name: Progress Point (21)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1644437118
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1644437117}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1, y: 0, z: 3.85}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2011924749}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1647073179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15169,6 +15273,23 @@ MonoBehaviour:
     onReached:
       m_PersistentCalls:
         m_Calls: []
+  - worldPositionTransform: {fileID: 1644437118}
+    dangerAction: {fileID: 0}
+    onReached:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 934945414}
+          m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: MainDoorOpen
+            m_BoolArgument: 0
+          m_CallState: 2
   - worldPositionTransform: {fileID: 1184034548}
     dangerAction: {fileID: 0}
     onReached:
@@ -15208,6 +15329,7 @@ MonoBehaviour:
   - {fileID: 1385677538}
   - {fileID: 355503836}
   - {fileID: 665706447}
+  - {fileID: 1644437118}
   - {fileID: 1184034548}
 --- !u!4 &2011924749
 Transform:
@@ -15245,6 +15367,7 @@ Transform:
   - {fileID: 1385677538}
   - {fileID: 355503836}
   - {fileID: 665706447}
+  - {fileID: 1644437118}
   - {fileID: 1184034548}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
