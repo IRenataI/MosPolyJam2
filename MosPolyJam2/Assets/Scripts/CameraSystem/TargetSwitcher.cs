@@ -132,6 +132,9 @@ public class TargetSwitcher : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
 
+        virtualHint.SetActive(false);
+        spectatorHint.SetActive(false);
+
         virtualCameraTransposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         SetTargetObject(npcObject, followOffset);
         SetTarget(null);
