@@ -9,8 +9,8 @@ public class FreeCamera : MonoBehaviour
     
     private CinemachineVirtualCamera cvCamera;
     private CinemachinePOV cameraPOV;
-    private Transform rotationCostylTransform;
     private Rigidbody rb;
+    private Transform rotationCostylTransform;
 
     private void Start()
     {

@@ -295,8 +295,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u041F\u0435\u0440\u0435\u0438\u0433\u0440\u0430\u0442\u044C"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
-  m_sharedMaterial: {fileID: -5567501833406925314, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7546f3119276914468946500d2db5763, type: 2}
+  m_sharedMaterial: {fileID: 1275017868409801731, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -359,7 +359,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &2235015036884779353
@@ -539,8 +539,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 00:00
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
-  m_sharedMaterial: {fileID: -5567501833406925314, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7546f3119276914468946500d2db5763, type: 2}
+  m_sharedMaterial: {fileID: 4167785010645134489, guid: 7546f3119276914468946500d2db5763, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -700,7 +700,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2990612462135355188}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -910,8 +910,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0423\u043C\u0438\u0440("
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
-  m_sharedMaterial: {fileID: -5567501833406925314, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7546f3119276914468946500d2db5763, type: 2}
+  m_sharedMaterial: {fileID: 1275017868409801731, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -974,7 +974,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4620503916161876983
@@ -1196,8 +1196,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0412 \u043C\u0435\u043D\u044E"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
-  m_sharedMaterial: {fileID: -5567501833406925314, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7546f3119276914468946500d2db5763, type: 2}
+  m_sharedMaterial: {fileID: 1275017868409801731, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1260,7 +1260,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6725688974484610172
@@ -1666,7 +1666,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7878528624038070960}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
   m_Name: 
@@ -1711,9 +1711,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 205, y: -100}
+  m_AnchoredPosition: {x: 50, y: -50}
   m_SizeDelta: {x: 310, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 1}
 --- !u!114 &8130395926723661521
 MonoBehaviour:
   m_ObjectHideFlags: 0

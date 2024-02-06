@@ -64,6 +64,7 @@ public class TargetSwitcher : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private Transform npcObject;
     [SerializeField] private Image timerImage;
+    [SerializeField] private Compass compass;
 
     public void SetTargetObject(Transform targetObject, Vector3 followOffset)
     {
@@ -77,13 +78,15 @@ public class TargetSwitcher : MonoBehaviour
     {
         if (this.target != null)
         {
-            this.target.IsEnabled = false;
+            this.target.EnableUI(false);
+            this.target.enabled = false;
         }
 
         this.target = target;
         if (target != null)
         {
-            target.IsEnabled = true;
+            this.target.EnableUI(true);
+            target.enabled = true;
         }
     }
 
@@ -110,6 +113,9 @@ public class TargetSwitcher : MonoBehaviour
         virtualCameraTransposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
         SetTargetObject(npcObject, followOffset);
         SetTarget(null);
+
+        if(compass != null)
+            compass.SetCameraTransform(normalCamera.transform);
     }
 
     private void LateUpdate()
@@ -143,7 +149,7 @@ public class TargetSwitcher : MonoBehaviour
             return;
         }
 
-        if (currentInteractable.GetTarget().IsEnabled)
+        if (currentInteractable.GetTarget().enabled)
             return;
 
         if (timer >= interactionTimer)

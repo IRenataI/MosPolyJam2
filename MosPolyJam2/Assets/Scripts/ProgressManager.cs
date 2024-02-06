@@ -47,15 +47,24 @@ public class ProgressManager : MonoBehaviour
         currentDanger = progressPoints[targetProgressPoint].dangerAction;
         if (currentDanger != null)
         {
-            npc.StartToFreeze(currentDanger.AnimationName);
+            if (currentDanger.IsCompleted)
+            {
+                Debug.LogWarning($"Danger {currentDanger.name} appears two or more times");
+                currentDanger = null;
+            }
+            else
+            {
+                if (!string.IsNullOrEmpty(currentDanger.NPCAnimationName))
+                    npc.StartToFreeze(currentDanger.NPCAnimationName, currentDanger, dangerTimerView, targetSwitcher);
 
-            currentDanger.OnComplete.AddListener(OnDangerCompleted);
-            currentDanger.Init(dangerTimerView);
-            dangerTimerView.gameObject.SetActive(true);
+                currentDanger.OnComplete.AddListener(OnDangerCompleted);
+                //currentDanger.Init(dangerTimerView);
+                //dangerTimerView.gameObject.SetActive(true);
 
-            targetSwitcher.IsEnabled = true;
+                // targetSwitcher.IsEnabled = true;
 
-            return;
+                return;
+            }
         }
 
         MoveToNextProgressPoint();
