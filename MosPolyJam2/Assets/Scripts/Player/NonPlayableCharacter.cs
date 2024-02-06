@@ -153,9 +153,16 @@ public class NonPlayableCharacter : MonoBehaviour
         Debug.Log("Setted moving animation trigger name: " + triggerName);
     }
 
+    public void PlayAnimation(string name)
+    {
+        animator.Play(name);
+        Debug.Log("Setted animation: " + name);
+    }
+
     public void SetMovingSpeed(float value)
     {
         movingSpeed = value;
         Debug.Log("Setted moving speed: " + value);
     }
+
 }

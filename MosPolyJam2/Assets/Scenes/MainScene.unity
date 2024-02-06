@@ -1061,6 +1061,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7965248812074183158, guid: 7f439fd81fe21944e8ea66a74996a946, type: 3}
   m_PrefabInstance: {fileID: 167652769}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &167652771 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 16182573979160893, guid: 7f439fd81fe21944e8ea66a74996a946, type: 3}
+  m_PrefabInstance: {fileID: 167652769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ab5adba42de57d4b92bf1eda501410f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &180087831
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4140,7 +4151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3859037247031781406, guid: 2a0bea0a61652de469f4d9db6c3de89c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.5075798
+      value: -2.501
       objectReference: {fileID: 0}
     - target: {fileID: 3859037247031781406, guid: 2a0bea0a61652de469f4d9db6c3de89c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4148,11 +4159,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3859037247031781406, guid: 2a0bea0a61652de469f4d9db6c3de89c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.92013496
+      value: -0.848
       objectReference: {fileID: 0}
     - target: {fileID: 3859037247031781406, guid: 2a0bea0a61652de469f4d9db6c3de89c, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9581107
+      value: 0.89289826
       objectReference: {fileID: 0}
     - target: {fileID: 3859037247031781406, guid: 2a0bea0a61652de469f4d9db6c3de89c, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4160,7 +4171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3859037247031781406, guid: 2a0bea0a61652de469f4d9db6c3de89c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.28639826
+      value: 0.4502585
       objectReference: {fileID: 0}
     - target: {fileID: 3859037247031781406, guid: 2a0bea0a61652de469f4d9db6c3de89c, type: 3}
       propertyPath: m_LocalRotation.z
@@ -4172,7 +4183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3859037247031781406, guid: 2a0bea0a61652de469f4d9db6c3de89c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 33.285
+      value: 53.521
       objectReference: {fileID: 0}
     - target: {fileID: 3859037247031781406, guid: 2a0bea0a61652de469f4d9db6c3de89c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -8399,18 +8410,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvases
       objectReference: {fileID: 0}
-    - target: {fileID: 5998186777513325244, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 1275017868409801731, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
-    - target: {fileID: 7577097417145611796, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 1275017868409801731, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
-    - target: {fileID: 7960101198918576226, guid: ad807b84858372a4aac2c2148d8d5c07, type: 3}
-      propertyPath: m_sharedMaterial
-      value: 
-      objectReference: {fileID: 1275017868409801731, guid: eef6addecc52c3a47bbd627821fe529d, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -13174,7 +13173,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls: []
   - worldPositionTransform: {fileID: 1563073309}
-    dangerAction: {fileID: 0}
+    dangerAction: {fileID: 167652771}
     onReached:
       m_PersistentCalls:
         m_Calls: []
@@ -16526,6 +16525,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8649138475686852256, guid: 4f5f9e95f85c6b84d9d1dd0a59594a9f, type: 3}
+      propertyPath: npc
+      value: 
+      objectReference: {fileID: 237838450}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

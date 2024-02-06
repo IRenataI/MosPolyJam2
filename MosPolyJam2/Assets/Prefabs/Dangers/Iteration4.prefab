@@ -519,19 +519,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnActivate:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1203242099209376939}
-        m_TargetAssemblyTypeName: DangerIteration4, Assembly-CSharp
-        m_MethodName: TeleportCamera
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   canBeReused: 0
   animator: {fileID: 8443918276003886643}
   successActivationAnimationName: close door
@@ -738,7 +726,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnActivate:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1203242099209376939}
+        m_TargetAssemblyTypeName: DangerIteration4, Assembly-CSharp
+        m_MethodName: Switch_BadDish1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   canBeReused: 0
   animator: {fileID: 0}
   successActivationAnimationName: 
@@ -900,7 +900,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnActivate:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1203242099209376939}
+        m_TargetAssemblyTypeName: DangerIteration4, Assembly-CSharp
+        m_MethodName: Switch_BadDish2
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   canBeReused: 0
   animator: {fileID: 0}
   successActivationAnimationName: 

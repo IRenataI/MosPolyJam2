@@ -1438,9 +1438,9 @@ MonoBehaviour:
   targetObject: {fileID: 8481584129426253833}
   cameraHeight: 0.5
   activatesOn: 1
-  leftSideActivationKey: 97
+  leftSideActivationKey: 119
   leftSideAnimationName: FallForward
-  rightSideActivationKey: 100
+  rightSideActivationKey: 115
   rightSideAnimationName: FallBackwards
 --- !u!1001 &9122779960741629534
 PrefabInstance:

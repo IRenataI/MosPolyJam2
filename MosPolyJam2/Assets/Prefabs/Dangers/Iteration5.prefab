@@ -52,6 +52,8 @@ MonoBehaviour:
   - {fileID: 7172634317604106761}
   failTargets: []
   nonImpactTargets: []
+  npc: {fileID: 0}
+  npcFailureAnimationName: Tripping (it5)
 --- !u!1 &7650646509682570009
 GameObject:
   m_ObjectHideFlags: 0

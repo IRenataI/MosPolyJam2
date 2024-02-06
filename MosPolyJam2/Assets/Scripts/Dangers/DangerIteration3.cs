@@ -6,6 +6,30 @@ public class DangerIteration3 : BaseDanger
     [SerializeField] private Transform dangerousTransform;
     [SerializeField] private Transform handTransform;
 
+    [SerializeField] private GameObject activationVFX;
+    [SerializeField] private GameObject looseVFX;
+
+    public override void Init(TimerView dangerTimerView)
+    {
+        base.Init(dangerTimerView);
+
+        activationVFX.SetActive(true);
+    }
+
+    protected override void Success()
+    {
+        base.Success();
+
+        activationVFX.SetActive(false);
+    }
+
+    protected override void Fail()
+    {
+        base.Fail();
+
+        looseVFX.SetActive(true);
+    }
+
     public void PutDangerousIntoHand()
     {
         dangerousTransform.parent = handTransform;
