@@ -3,7 +3,10 @@ using UnityEngine;
 public class DangerIteration4 : BaseDanger
 {
     [Header("Danger Iteration 4")]
+    [SerializeField] private Transform spectatorCamera;
+    [SerializeField] private Transform afterClosingDoorCameraPoint;
     [SerializeField] private GameObject[] objects;
+
     private int counter;
 
     private void SwitchPositions(Transform t1, Transform t2)
@@ -48,5 +51,15 @@ public class DangerIteration4 : BaseDanger
 
         SwitchPositions(firstObject.transform, secondObject.transform);
         counter++;
+    }
+
+    public void TeleportCamera()
+    {
+        void Tp()
+        {
+            spectatorCamera.position = afterClosingDoorCameraPoint.position;
+        }
+
+        Invoke(nameof(Tp), 0.3f);
     }
 }

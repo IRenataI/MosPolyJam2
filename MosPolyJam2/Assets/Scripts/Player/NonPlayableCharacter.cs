@@ -21,6 +21,8 @@ public class NonPlayableCharacter : MonoBehaviour
     private TimerView timerView;
     private TargetSwitcher targetSwitcher;
 
+    private string movingAnimationTriggerName = "Move";
+
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -88,7 +90,7 @@ public class NonPlayableCharacter : MonoBehaviour
             StopCoroutine(lookAtCoroutine);
         lookAtCoroutine = StartCoroutine(LookAt(targetPosition, rotationTime));
 
-        animator.SetTrigger("Move");
+        animator.SetTrigger(movingAnimationTriggerName);
         if(AudioManager.Instance != null)
         {
             AudioManager.Instance.PlaySound("Walk");
@@ -143,5 +145,17 @@ public class NonPlayableCharacter : MonoBehaviour
     public void Unfreeze()
     {
         animator.speed = 1f;
+    }
+
+    public void SetMovingAnimation(string triggerName)
+    {
+        movingAnimationTriggerName = triggerName;
+        Debug.Log("Setted moving animation trigger name: " + triggerName);
+    }
+
+    public void SetMovingSpeed(float value)
+    {
+        movingSpeed = value;
+        Debug.Log("Setted moving speed: " + value);
     }
 }
