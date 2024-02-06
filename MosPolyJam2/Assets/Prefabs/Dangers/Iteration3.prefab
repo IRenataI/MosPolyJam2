@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ab5adba42de57d4b92bf1eda501410f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcAnimationName: Idle (iteration5)
+  npcAnimationName: PouringToMixer
   time: 30
   uiPrefab: {fileID: 0}
   completeTargets:

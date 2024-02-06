@@ -9,6 +9,10 @@ public class DangerIteration3 : BaseDanger
     [SerializeField] private GameObject activationVFX;
     [SerializeField] private GameObject looseVFX;
 
+    private Vector3 position;
+    private Vector3 lossyScale;
+    private Quaternion rotation;
+
     public override void Init(TimerView dangerTimerView)
     {
         base.Init(dangerTimerView);
@@ -34,7 +38,20 @@ public class DangerIteration3 : BaseDanger
     {
         dangerousTransform.parent = handTransform;
 
+        position = dangerousTransform.position;
+        rotation = dangerousTransform.rotation;
+        lossyScale = dangerousTransform.lossyScale;
+
         dangerousTransform.localPosition = Vector3.zero;
         dangerousTransform.rotation = Quaternion.identity;
+    }
+
+    public void UnputDangerousIntoHand()
+    {
+        dangerousTransform.parent = transform;
+
+        dangerousTransform.position = position;
+        dangerousTransform.rotation = rotation;
+        dangerousTransform.localScale = lossyScale;
     }
 }
