@@ -5,9 +5,6 @@ using TMPro;
 
 public class TutorialCamera : MonoBehaviour
 {
-    [Header("Description")]
-    [TextArea] [SerializeField] private string descriptionText;
-    [SerializeField] private TMP_Text description;
     [Header("End Stage")]
     [SerializeField] private KeyCode keyToEndStage;
     [SerializeField] private UnityEvent OnStageEnded;
@@ -34,13 +31,6 @@ public class TutorialCamera : MonoBehaviour
     {
         virtualCamera.enabled = false;
 
-        description.text = "";
-
         OnStageEnded?.Invoke();
-    }
-
-    public void SetDescription()
-    {
-        description.text = descriptionText;
     }
 }

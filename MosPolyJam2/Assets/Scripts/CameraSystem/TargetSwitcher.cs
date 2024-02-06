@@ -114,7 +114,8 @@ public class TargetSwitcher : MonoBehaviour
         SetTargetObject(npcObject, followOffset);
         SetTarget(null);
 
-        compass.SetCameraTransform(normalCamera.transform);
+        if(compass != null)
+            compass.SetCameraTransform(normalCamera.transform);
     }
 
     private void LateUpdate()
