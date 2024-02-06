@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: Walk
-    volume: 0.5
+    volume: 0.3
     isLooped: 1
     mixerGroup: {fileID: -6618192482675976053, guid: 115a97aeb5f9d304b8470aa50a2bbcee, type: 2}
     clip: {fileID: 8300000, guid: f8c14f2814b4b124a894a65c32c44987, type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Music
     volume: 0.05
-    isLooped: 0
+    isLooped: 1
     mixerGroup: {fileID: 8833835337505600130, guid: 115a97aeb5f9d304b8470aa50a2bbcee, type: 2}
     clip: {fileID: 8300000, guid: 977eae5ec689c5243b3521d9342208bc, type: 3}
     source: {fileID: 0}
