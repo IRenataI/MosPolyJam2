@@ -57,6 +57,7 @@ public class TargetSwitcher : MonoBehaviour
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
     [SerializeField] private float interactionTimer = 1.5f;
     private float timer = 0f;
+    [SerializeField] private KeyCode backKey = KeyCode.Space;
 
     private IInteractable currentInteractable;
     private BaseTarget target;
@@ -125,6 +126,11 @@ public class TargetSwitcher : MonoBehaviour
 
         SearchInteractable();
         InteractTarget();
+
+        if (Input.GetKeyDown(backKey))
+        {
+            CurrentCameraState = CameraStates.Spectator;
+        }
     }
 
     private void SearchInteractable()
