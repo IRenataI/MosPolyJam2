@@ -159,7 +159,7 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 31bf793ce87675c4e853d705390e52f2, type: 2}
+      objectReference: {fileID: 9100000, guid: 6eabe759ee9bf984593c456427b4b74b, type: 2}
     - target: {fileID: 5866666021909216657, guid: 8813d78a93fbd21469c45e2cbaaa18b4, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -194,6 +194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   npc: {fileID: 5885471900978274967}
   progressManager: {fileID: 0}
+  particleSystemDetector: {fileID: 0}
+  animatorDetector: {fileID: 0}
 --- !u!114 &4817009271631415333
 MonoBehaviour:
   m_ObjectHideFlags: 0
