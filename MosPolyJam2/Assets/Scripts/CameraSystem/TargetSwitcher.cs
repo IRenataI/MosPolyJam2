@@ -4,7 +4,20 @@ using UnityEngine.UI;
 
 public class TargetSwitcher : MonoBehaviour
 {
-    public bool IsEnabled { get; set; }
+    public bool IsEnabled {
+        get { return isEnabled; }
+        set 
+        {
+            if (isEnabled == value)
+                return;
+
+            isEnabled = value;
+
+            if (isEnabled)
+                spectatorHint.SetActive(true);
+        } 
+    }
+    private bool isEnabled;
 
     public CameraStates CurrentCameraState
     {
@@ -22,6 +35,9 @@ public class TargetSwitcher : MonoBehaviour
 
                 virtualCamera.enabled = true;
                 spectatorCamera.enabled = false;
+
+                virtualHint.SetActive(true);
+                spectatorHint.SetActive(false);
             }
             else if(currentCameraState == CameraStates.Spectator)
             {
@@ -31,6 +47,9 @@ public class TargetSwitcher : MonoBehaviour
 
                 spectatorCamera.enabled = true;
                 virtualCamera.enabled = false;
+
+                spectatorHint.SetActive(true);
+                virtualHint.SetActive(false);
 
                 SetTarget(null);
             }
@@ -65,6 +84,8 @@ public class TargetSwitcher : MonoBehaviour
     [Header("Refs")]
     [SerializeField] private Transform npcObject;
     [SerializeField] private Image timerImage;
+    [SerializeField] private GameObject virtualHint;
+    [SerializeField] private GameObject spectatorHint;
     [SerializeField] private Compass compass;
 
     public void SetTargetObject(Transform targetObject, Vector3 followOffset)
