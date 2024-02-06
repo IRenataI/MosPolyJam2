@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2128717311971649371
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8640391603843175725}
+  m_Layer: 0
+  m_Name: CameraPosition Knife
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8640391603843175725
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2128717311971649371}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4567, y: -0.357, z: 1.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7821994614737549996}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2173418823607873041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4306970453168520876}
+  m_Layer: 0
+  m_Name: CameraPosition Dish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4306970453168520876
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2173418823607873041}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.532, y: -0.357, z: 1.028}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7821994614737549996}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8850362262392965671
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,6 +71,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7821994614737549996}
+  - component: {fileID: 1969665390622919569}
   m_Layer: 0
   m_Name: Iteration6
   m_TagString: Untagged
@@ -24,7 +87,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8850362262392965671}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -32,8 +95,34 @@ Transform:
   - {fileID: 4747890996805068994}
   - {fileID: 8965741723066202369}
   - {fileID: 7002894361749355153}
+  - {fileID: 4306970453168520876}
+  - {fileID: 8640391603843175725}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1969665390622919569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850362262392965671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 934e1f40474e8054ea985698c5537db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  npcAnimationName: Surprised(6)
+  time: 30
+  uiPrefab: {fileID: 4825840096188392571, guid: fe0bbc3ca4eb4bd46b72fd00348186c1, type: 3}
+  completeTargets:
+  - {fileID: 545974553906987018}
+  failTargets: []
+  nonImpactTargets:
+  - {fileID: 5008776304763957403}
+  knife: {fileID: 7002894361749355153}
+  lobster: {fileID: 8965741723066202369}
+  npc: {fileID: 0}
+  npcFailureAnimationName: Back Fall
 --- !u!1001 &3890996954927958660
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -109,6 +198,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4816880356611959103, guid: 66fd279e181b85c4c896e15650a22222, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2385358486607942644}
+    - targetCorrespondingSourceObject: {fileID: 4816880356611959103, guid: 66fd279e181b85c4c896e15650a22222, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8311221546078267013}
   m_SourcePrefab: {fileID: 100100000, guid: 66fd279e181b85c4c896e15650a22222, type: 3}
 --- !u!1 &8585943591047799739 stripped
 GameObject:
@@ -136,6 +228,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8311221546078267013
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8585943591047799739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013d23ff4d970824e9e98586f804ef1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2385358486607942644}
 --- !u!4 &8965741723066202369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5301633435962045317, guid: 66fd279e181b85c4c896e15650a22222, type: 3}
@@ -149,6 +254,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 7821994614737549996}
     m_Modifications:
+    - target: {fileID: 452684003542371599, guid: 9b154790da4c677438cdabebc609b889, type: 3}
+      propertyPath: m_Size.x
+      value: 0.63041764
+      objectReference: {fileID: 0}
+    - target: {fileID: 452684003542371599, guid: 9b154790da4c677438cdabebc609b889, type: 3}
+      propertyPath: m_Size.y
+      value: 0.82267326
+      objectReference: {fileID: 0}
+    - target: {fileID: 452684003542371599, guid: 9b154790da4c677438cdabebc609b889, type: 3}
+      propertyPath: m_Size.z
+      value: 3.0434387
+      objectReference: {fileID: 0}
+    - target: {fileID: 452684003542371599, guid: 9b154790da4c677438cdabebc609b889, type: 3}
+      propertyPath: m_Center.x
+      value: -0.004551435
+      objectReference: {fileID: 0}
+    - target: {fileID: 452684003542371599, guid: 9b154790da4c677438cdabebc609b889, type: 3}
+      propertyPath: m_Center.y
+      value: -0.14164916
+      objectReference: {fileID: 0}
+    - target: {fileID: 452684003542371599, guid: 9b154790da4c677438cdabebc609b889, type: 3}
+      propertyPath: m_Center.z
+      value: 0.83359116
+      objectReference: {fileID: 0}
     - target: {fileID: 3888780648929763388, guid: 9b154790da4c677438cdabebc609b889, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.16544577
@@ -216,6 +345,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4520604438493100678, guid: 9b154790da4c677438cdabebc609b889, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3940615816760388634}
+    - targetCorrespondingSourceObject: {fileID: 4520604438493100678, guid: 9b154790da4c677438cdabebc609b889, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 545974553906987018}
+    - targetCorrespondingSourceObject: {fileID: 4520604438493100678, guid: 9b154790da4c677438cdabebc609b889, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8020520264120019651}
   m_SourcePrefab: {fileID: 100100000, guid: 9b154790da4c677438cdabebc609b889, type: 3}
 --- !u!4 &7002894361749355153 stripped
 Transform:
@@ -248,6 +383,55 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &545974553906987018
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666419579464687659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c75e34f44cb9b14583a23bec8157eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  canBeReused: 0
+  animator: {fileID: 3940615816760388634}
+  successActivationAnimationName: KnifeFly
+  infoText: "\u041D\u0430\u0436\u0438\u043C\u0430\u0439\u0442\u0435 SPACE \u0434\u043E
+    \u043F\u043E\u0441\u0438\u043D\u0435\u043D\u0438\u044F"
+  infoUIPrefab: {fileID: 1590439966534453926, guid: 77c9366e3307cc94880dba61cfd79820, type: 3}
+  rend: {fileID: 8170773877353873918}
+  defaultEmissiveness: 1
+  defaultOutlineOpacity: 0.5
+  targetEmissiveness: 1.2
+  targetOutlineOpacity: 0
+  targetObject: {fileID: 8640391603843175725}
+  cameraHeight: 0
+  activationKey: 32
+  neededPressCount: 15
+  pressAnimationName: KnifeDrag
+--- !u!114 &8020520264120019651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7666419579464687659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb9f2b60d1b0fa540a7f658349a98a19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  di6: {fileID: 1969665390622919569}
+--- !u!23 &8170773877353873918 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2719212897510153043, guid: 9b154790da4c677438cdabebc609b889, type: 3}
+  m_PrefabInstance: {fileID: 6113915994176543405}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8721973534572702195
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -264,6 +448,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2313228686311510807, guid: 595c816587aee634d8a66a30280a42df, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4100889213808345393, guid: 595c816587aee634d8a66a30280a42df, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.4018391
@@ -274,7 +462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4100889213808345393, guid: 595c816587aee634d8a66a30280a42df, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.90232384
+      value: 0.9023238
       objectReference: {fileID: 0}
     - target: {fileID: 4100889213808345393, guid: 595c816587aee634d8a66a30280a42df, type: 3}
       propertyPath: m_LocalRotation.w
@@ -304,6 +492,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6732739443542850808, guid: 595c816587aee634d8a66a30280a42df, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7378955466271648498, guid: 595c816587aee634d8a66a30280a42df, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -319,7 +511,18 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1892402145645208656, guid: 595c816587aee634d8a66a30280a42df, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7293841142980769708}
+    - targetCorrespondingSourceObject: {fileID: 1892402145645208656, guid: 595c816587aee634d8a66a30280a42df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6685012629241509283}
+    - targetCorrespondingSourceObject: {fileID: 1892402145645208656, guid: 595c816587aee634d8a66a30280a42df, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5008776304763957403}
   m_SourcePrefab: {fileID: 100100000, guid: 595c816587aee634d8a66a30280a42df, type: 3}
+--- !u!23 &1429303990673553880 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7700949616098103339, guid: 595c816587aee634d8a66a30280a42df, type: 3}
+  m_PrefabInstance: {fileID: 8721973534572702195}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4747890996805068994 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4100889213808345393, guid: 595c816587aee634d8a66a30280a42df, type: 3}
@@ -351,3 +554,55 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!65 &6685012629241509283
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7154395779905277347}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25, y: 0.1, z: 0.25}
+  m_Center: {x: 0, y: 0.01, z: 0}
+--- !u!114 &5008776304763957403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7154395779905277347}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c75e34f44cb9b14583a23bec8157eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnActivate:
+    m_PersistentCalls:
+      m_Calls: []
+  canBeReused: 0
+  animator: {fileID: 7293841142980769708}
+  successActivationAnimationName: dishActivated
+  infoText: "\u041D\u0430\u0436\u0438\u043C\u0430\u0439\u0442\u0435 SPACE \u0434\u043E
+    \u043F\u043E\u0441\u0438\u043D\u0435\u043D\u0438\u044F"
+  infoUIPrefab: {fileID: 1590439966534453926, guid: 77c9366e3307cc94880dba61cfd79820, type: 3}
+  rend: {fileID: 1429303990673553880}
+  defaultEmissiveness: 1
+  defaultOutlineOpacity: 0.5
+  targetEmissiveness: 1.2
+  targetOutlineOpacity: 0
+  targetObject: {fileID: 4306970453168520876}
+  cameraHeight: 0
+  activationKey: 32
+  neededPressCount: 15
+  pressAnimationName: Dish
